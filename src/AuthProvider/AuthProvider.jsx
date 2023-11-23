@@ -1,7 +1,10 @@
 import  { createContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+// import useAxiosPublic from '../Hooks/useAxiosPublic';
 import auth from '../firebase.config/firebase.config';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+
 
 const provider = new GoogleAuthProvider();
 export const AuthContext = createContext()
@@ -10,6 +13,7 @@ const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
 
 
@@ -41,30 +45,33 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
-                setUser(currentUser)
-                setIsLoading(false)
-                console.log("Current user", currentUser);
-                const user = { email: currentUser?.email }
-                if(currentUser){
-                    axiosPublic.post('/jwt', user )
-                    .then(res => {
-                        console.log(res.data.token);
-                        if(res.data.token){
-                            localStorage.setItem("token", res.data.token)
-                        } 
-                    }) 
-                } else {
-                     localStorage.removeItem("token")
-                }
-                
+            const userEmail = currentUser?.email || user?.email
+            console.log(userEmail);
 
-        
-        
+            setUser(currentUser)
+            console.log("user login in", currentUser);
+            setIsLoading(false)
+            if(currentUser){
+                axiosSecure.post('/jwt', {email: userEmail},)
+                .then(res => {
+                    console.log(res.data);
+                })
+            } 
+            if(currentUser === null){
+                console.log("ppppppppppppppp");
+                    axiosPublic.post('/api/v1/logout')
+                    .then(res => {
+                        console.log(res.data);
+                    })
+             
+            }
+           
+                
             })  
         return () => {
             unSubcribe()
         }
-    }, [axiosPublic])
+    }, [])
 
 
     const authInfo = {

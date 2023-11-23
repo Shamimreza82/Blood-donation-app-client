@@ -14,8 +14,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import useAuth from '../../Hooks/useAuth';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import useAuth from '../Hooks/useAuth';
+import SocialLogin from '../component/SocialLogin';
 
 
 function Copyright(props) {
@@ -36,9 +38,9 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Register() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
-    // const {user, createUser} = useAuth()
+    const {user, createUser} = useAuth()
 
     
   const handleSubmit = async (event) => {
@@ -51,11 +53,12 @@ export default function Register() {
         email: data.get('email'),
         password: data.get('password'),
     }
+    console.log(user);
+    const result = await createUser(user.email, user.password)
+    console.log(result.user);
+    toast.success("Register Successful")
 
-    // const result = await createUser(user.email, user.password)
-    // console.log(result.user);
-    // toast.success("Register Successful")
-    // navigate('/')
+    // Navigate('/')
   };
 
   return (
@@ -78,18 +81,8 @@ export default function Register() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
+              
+              <Grid item xs={12} >
                 <TextField
                   required
                   fullWidth
@@ -121,10 +114,7 @@ export default function Register() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
+               
               </Grid>
             </Grid>
             <Button
@@ -145,7 +135,7 @@ export default function Register() {
            
           </Box>
           <div>
-           {/* <SocialLogin></SocialLogin> */}
+           <SocialLogin></SocialLogin>
           </div>
         </Box>
         <Copyright sx={{ mt: 2 }} />
