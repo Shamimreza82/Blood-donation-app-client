@@ -9,6 +9,10 @@ import CreateDonation from "../pages/Dashboard/DashboardPages/Donor/CreateDonati
 import Profile from "../pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
 import DonationRequst from "../pages/HomePage/DonationRequst";
+import AllUsers from "../pages/Dashboard/DashboardPages/Admin/AllUsers";
+import ContantManagement from "../pages/Dashboard/DashboardPages/Admin/ContantManagement";
+import DonationRequestAdmin from "../pages/Dashboard/DashboardPages/Admin/DonationRequestAdmin";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +37,10 @@ const router = createBrowserRouter([
         path: '/dashboard', 
         element: <Dashboard></Dashboard>, 
         children: [
+            {
+                index: true, 
+                element: <DashboardHome></DashboardHome>
+            },
 
             //// donor Route
             {
@@ -44,7 +52,7 @@ const router = createBrowserRouter([
                 element: <CreateDonation></CreateDonation>
             }, 
 
-            ////// app rols 
+            //////////////////////// app rols 
             {
                 path: '/dashboard/profile', 
                 element: <Profile></Profile>
@@ -52,7 +60,22 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/updateUser/:id', 
                 element: <UpdateProfile></UpdateProfile>
-            }
+            }, 
+
+            ////// admin role
+            {
+                path: '/dashboard/allUsers', 
+                element: <AllUsers></AllUsers>
+            }, 
+            {
+                path: '/dashboard/contentManagement', 
+                element: <ContantManagement></ContantManagement>
+            }, 
+            {
+                path: '/dashboard/donationRequest', 
+                element: <DonationRequestAdmin></DonationRequestAdmin>
+            }, 
+
         ]
     }
 ])

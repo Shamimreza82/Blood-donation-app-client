@@ -72,6 +72,9 @@ const Sidebar = () => {
             {/* If a user is host */}
             {/* <ToggleButton toggleHandler={toggleHandler} /> */}
             <nav>
+
+              {/* donner Routes */}
+
               <MenuItem
               icon={FcSettings}
               label='Profile'
@@ -87,6 +90,27 @@ const Sidebar = () => {
                 label='Create Donation'
                 address='/dashboard/createDonation'
               />
+
+
+              {/* Admin Role */}
+
+
+              { singelUser?.role === 'admin' && <MenuItem
+                icon={BsGraphUp}
+                label='All Users'
+                address='/dashboard/allUsers'
+              />}
+              {singelUser?.role === 'admin' || singelUser?.role === 'volunteer' && <MenuItem
+                icon={BsGraphUp}
+                label='Donation Request'
+                address='/dashboard/donationRequest'
+              />}
+              <MenuItem
+                icon={BsGraphUp}
+                label='Content Mangement'
+                address='/dashboard/contentManagement'
+              />
+              {/* volienteer router  */}
 
               {/* Menu Items */}
             </nav>

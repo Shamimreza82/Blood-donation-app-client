@@ -47,6 +47,8 @@ function Navber(props) {
     </Box>
   );
 
+  
+
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -96,6 +98,11 @@ function Navber(props) {
           </Button>
             </>
           }
+          <Button>
+            <Link to='/dashboard' className='text-black'>
+              DashBoard
+            </Link>
+          </Button>
         </Toolbar>
         </Container>
       </AppBar>
@@ -113,6 +120,7 @@ function Navber(props) {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
+          
           {drawer}
         </Drawer>
       </nav>
