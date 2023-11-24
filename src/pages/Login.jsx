@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SocialLogin from '../component/SocialLogin';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../Hooks/useAuth';
 // import { useNavigate } from 'react-router-dom';
 // import SocialLogin from '../component/SocialLogin';
 // import toast from 'react-hot-toast';
@@ -37,8 +40,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function Login() {
-//   const {loginUser} = useAuth()
-//   const navigate = useNavigate()
+  const {loginUser} = useAuth()
+  const navigate = useNavigate()
 
 
   const handleSubmit =  async(event) => {
@@ -49,11 +52,11 @@ export default function Login() {
       password: data.get('password'),
     }
 
-    // const result = await loginUser(LoginUser.email, LoginUser.password)
-    // if(result?.user?.email){
-    //   toast.success('Login SuccessFul')
-    //   navigate('/')
-    // }
+    const result = await loginUser(LoginUser.email, LoginUser.password)
+    if(result?.user?.email){
+      toast.success('Login SuccessFul')
+      navigate('/')
+    }
 
 
   };

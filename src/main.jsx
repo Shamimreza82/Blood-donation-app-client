@@ -10,6 +10,7 @@ import App from "./App";
 import router from "./Router/Router";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import MainLayout from "./Layout/MainLayout";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <RouterProvider router={router}>
         <MainLayout></MainLayout>
       </RouterProvider>
+      <Toaster />
     </AuthProvider>
   </React.StrictMode>
 );
