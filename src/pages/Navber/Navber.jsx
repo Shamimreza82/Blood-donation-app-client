@@ -72,27 +72,15 @@ function Navber(props) {
             MUI
           </Typography>
           <Button>
-            <Link to='/' className='text-black'>
+            <Link to='/donationRequest' className='text-black'>
               Donation Request
             </Link>
           </Button>
-          {
-            user && <>
-            <Button>
-            <Link to='/dashboard' className='text-black'>
-            Registration
-            </Link>
-          </Button>
-            </>
-            
-          }
           <Button>
             <Link to='/' className='text-black'>
            Blog
             </Link>
           </Button>
-      
-         
           {
             user ? <>
             <Button onClick={() =>logeOutUser()}>
@@ -102,8 +90,8 @@ function Navber(props) {
           </Button>
             </> : <>
             <Button>
-            <Link to='/login' className='text-black'>
-            Login
+            <Link to='/register' className='text-black'>
+            Registration
             </Link>
           </Button>
             </>

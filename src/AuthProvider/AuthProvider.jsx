@@ -32,6 +32,7 @@ const AuthProvider = ({children}) => {
     /// google Login
 
     const loginWithGoogle = () => {
+        setIsLoading(true)
         return signInWithPopup(auth, provider)
     }
 
@@ -46,11 +47,10 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const unSubcribe = onAuthStateChanged(auth, (currentUser) => {
             const userEmail = currentUser?.email || user?.email
-            console.log(userEmail);
-
             setUser(currentUser)
-            console.log("user login in", currentUser);
             setIsLoading(false)
+            console.log("user login in", currentUser);
+            
             if(currentUser){
                 axiosSecure.post('/jwt', {email: userEmail},)
                 .then(res => {
@@ -65,9 +65,9 @@ const AuthProvider = ({children}) => {
                     })
              
             }
-           
-                
+             
             })  
+            
         return () => {
             unSubcribe()
         }

@@ -8,6 +8,7 @@ import MyDonationRequest from "../pages/Dashboard/DashboardPages/Donor/MyDonatio
 import CreateDonation from "../pages/Dashboard/DashboardPages/Donor/CreateDonation";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
+import DonationRequst from "../pages/HomePage/DonationRequst";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,12 @@ const router = createBrowserRouter([
     {
         path: '/register', 
         element: <Register></Register>
+    }, 
+    {
+        path: '/donationRequest', 
+        element: <PrivateRoute>
+            <DonationRequst></DonationRequst>
+        </PrivateRoute>
     }, 
     {
         path: '/dashboard', 

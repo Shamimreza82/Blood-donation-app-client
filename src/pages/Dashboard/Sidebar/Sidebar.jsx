@@ -10,12 +10,19 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
 import ToggleButton from './ToggleButton'
 import useAuth from '../../../Hooks/useAuth'
+import useUserInfo from '../../../Hooks/useUserInfo'
+import { useNavigate } from 'react-router-dom'
+
+
 
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false)
   const [isActive, setActive] = useState(false)
   const {logeOutUser} =useAuth()
+  const [singelUser] = useUserInfo()
+  const navigate = useNavigate()
+
 
     // For guest/host menu item toggle button
   const toggleHandler = event => {
@@ -31,7 +38,7 @@ const Sidebar = () => {
       <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
         <div>
           <div className='block cursor-pointer p-4 font-bold'>
-            {/* <Logo /> */}
+         
           </div>
         </div>
 
@@ -50,20 +57,25 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-              {/* <Logo /> */}
+            <div className='w-full hidden md:flex px-4   rounded-lg justify-center items-center  mx-auto'>
+            <div className="flex flex-col items-center -mx-2">
+            <img className="object-cover w-24 h-24 mx-2 rounded-full" src={singelUser?.image} alt="avatar"/>
+            <h4 className="mx-2 mt-2 font-medium text-gray-800 ">{singelUser?.Name}</h4>
+            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{singelUser?.email}</p>
+            <p className="mx-2 mt-1 text-sm font-medium text-green-600 ">{singelUser?.role}</p>
+        </div>
             </div>
           </div>
 
           {/* Nav Items */}
-          <div className='flex flex-col justify-between flex-1 mt-6'>
+          <div className='flex flex-col justify-between flex-1 mt-2'>
             {/* If a user is host */}
-            <ToggleButton toggleHandler={toggleHandler} />
+            {/* <ToggleButton toggleHandler={toggleHandler} /> */}
             <nav>
               <MenuItem
-                icon={BsGraphUp}
-                label='Statistics'
-                address='/dashboard'
+              icon={FcSettings}
+              label='Profile'
+              address='/dashboard/profile'
               />
               <MenuItem
                 icon={BsGraphUp}
@@ -84,15 +96,11 @@ const Sidebar = () => {
         <div>
           <hr />
 
-          <MenuItem
-            icon={FcSettings}
-            label='Profile'
-            address='/dashboard/profile'
-            />
+          
             <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
            <GrLogout className='w-5 h-5' />
 
-            <span onClick={() => logeOutUser('/')} className='mx-4 font-medium'>Logout</span>
+            <span onClick={() => logeOutUser(navigate('/'))} className='mx-4 font-medium'>Logout</span>
           </button>
         </div>
       </div>

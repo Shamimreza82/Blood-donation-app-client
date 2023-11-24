@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserInfo from "../../../Hooks/useUserInfo";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
@@ -12,6 +12,7 @@ const UpdateProfile = () => {
   const [upValue2, SetDUpValue2] = useState('')
   const [bloodGroup, setBloodgroup] = useState("");
   const [distValue, SetDistValue] = useState('')
+    const navigate = useNavigate()
 //   const [image, setimage] = useState('')
 
   const axiosPublic = useAxiosPublic()
@@ -47,10 +48,10 @@ useEffect(() => {
     console.log(updateProfile);
         const res = await axiosPublic.put(`/user/${singleUser?.email}`, updateProfile )
         console.log(res.data)
-        // if(res.data.insertedId){
-        //   toast.success("Profile Update Successful");
-        //       // Navigate('/')
-        // }
+        if(res.data.modifiedCount > 0){
+          toast.success("Profile Update Successful");
+              navigate('/dashboard/profile')
+        }
     
     
 
