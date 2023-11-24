@@ -105,11 +105,11 @@ const Sidebar = () => {
                 label='Donation Request'
                 address='/dashboard/donationRequest'
               />}
-              <MenuItem
+              {singelUser?.role === 'admin' || singelUser?.role === 'volunteer' && <MenuItem
                 icon={BsGraphUp}
                 label='Content Mangement'
                 address='/dashboard/contentManagement'
-              />
+              />}
               {/* volienteer router  */}
 
               {/* Menu Items */}
