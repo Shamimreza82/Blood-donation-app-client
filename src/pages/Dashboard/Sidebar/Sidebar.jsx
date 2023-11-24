@@ -9,11 +9,13 @@ import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
 import ToggleButton from './ToggleButton'
+import useAuth from '../../../Hooks/useAuth'
 
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false)
   const [isActive, setActive] = useState(false)
+  const {logeOutUser} =useAuth()
 
     // For guest/host menu item toggle button
   const toggleHandler = event => {
@@ -63,6 +65,16 @@ const Sidebar = () => {
                 label='Statistics'
                 address='/dashboard'
               />
+              <MenuItem
+                icon={BsGraphUp}
+                label='My Donation'
+                address='/dashboard/myDonationRequest'
+              />
+              <MenuItem
+                icon={BsGraphUp}
+                label='Create Donation'
+                address='/dashboard/createDonation'
+              />
 
               {/* Menu Items */}
             </nav>
@@ -80,7 +92,7 @@ const Sidebar = () => {
             <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
            <GrLogout className='w-5 h-5' />
 
-            <span className='mx-4 font-medium'>Logout</span>
+            <span onClick={() => logeOutUser('/')} className='mx-4 font-medium'>Logout</span>
           </button>
         </div>
       </div>
