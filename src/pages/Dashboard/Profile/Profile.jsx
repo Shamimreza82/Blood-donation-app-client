@@ -1,21 +1,13 @@
 
-
-import { useEffect, useState } from 'react'
-import useAuth from '../../../Hooks/useAuth'
-import { userSingleData } from '../../../api/ultis'
-import axiosInterseptor from '../../../api/auth'
+import { Link } from 'react-router-dom'
 import useUserInfo from '../../../Hooks/useUserInfo'
-// import useRole from '../../../hooks/useRole'
-// import { Helmet } from 'react-helmet-async'
+
 
 const Profile = () => {
 const [singleUser] = useUserInfo()
 
   return (
     <div className='flex justify-center items-center h-screen'>
-      {/* <Helmet>
-        <title>Profile</title>
-      </Helmet> */}
       <div className='bg-white shadow-lg rounded-2xl w-3/5'>
         <img
           alt='profile'
@@ -51,9 +43,9 @@ const [singleUser] = useUserInfo()
               </p>
 
               <div>
-                <button className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
+                <Link to={`/dashboard/updateUser/${singleUser._id}`}  className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
                   Update Profile
-                </button>
+                </Link>
                 <button className='bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]'>
                   Change Password
                 </button>

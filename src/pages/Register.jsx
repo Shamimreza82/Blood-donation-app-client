@@ -113,7 +113,7 @@ export default function Register() {
       console.log(res.data)
       if(res.data.insertedId){
         toast.success("Register Successful");
-            navigate('/')
+            // Navigate('/')
       }
     }
 
