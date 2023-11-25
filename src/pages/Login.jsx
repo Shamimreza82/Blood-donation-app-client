@@ -127,7 +127,7 @@ export default function Login() {
           </Box>
         </Box>
         <div className='flex justify-center'>
-          <SocialLogin></SocialLogin>
+          {/* <SocialLogin></SocialLogin> */}
         </div>
         <Copyright sx={{ mt: 4, mb: 4,  }} />
       </Container>

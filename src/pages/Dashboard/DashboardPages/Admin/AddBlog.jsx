@@ -1,20 +1,53 @@
 
 import React, { useRef, useState } from "react";
 import JoditEditor from 'jodit-react';
+import { useForm } from "react-hook-form";
+import { imageUplode } from "../../../../api/ultis";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const AddBlog = () => {
     const editor = useRef(null)
     const [content, setContent] = useState('')
+    const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
 
-const hanelBlogPost = () => {
+const {
+  register,
+  handleSubmit,
+  watch,
+  formState: { errors },
+} = useForm()
 
-    const blog = {
-        titel: "", 
-        content: "", 
-        
-    }
+const onSubmit = async (data) => {
+  const title = data.title
+  const image = data.image[0] 
+  
+  const result = await imageUplode(image)
+
+
+const blogPost = {
+  title: title, 
+  content: content, 
+  image: result?.data?.display_url, 
+  status: 'draft'
 }
+
+
+  const res = await axiosSecure.post('/blog',blogPost )
+  console.log(res.data);
+  if(res.data.acknowledged){
+    toast.success("blog Add successfull")
+    navigate('/dashboard/contentManagement')
+  }
+
+
+} 
+ 
+
+
 
 
 
@@ -25,7 +58,7 @@ const hanelBlogPost = () => {
           <h1 className="text-3xl">New Blog Post Entry</h1>
           <p>Kindly provide clearly the following information.</p>
         </div>
-        <form action="#" method="POST" className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} action="#" method="POST" className="space-y-6">
           <div >
             <div >
               <label className="block text-sm font-medium text-neutral-600 ">
@@ -36,7 +69,8 @@ const hanelBlogPost = () => {
                 <input
                   id="email"
                   name="title"
-                  type="email"
+                  {...register('title')}
+                  type="text"
                   required=""
                   placeholder="Blog Titel"
                   className="block  w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
@@ -67,11 +101,13 @@ const hanelBlogPost = () => {
             ></JoditEditor>
           </div>
           <div>
-            <label className="block text-sm font-medium text-neutral-600">
+            <label className="block text-sm font-medium text-neutral-600 py-2">
               {" "}
-              Unlade Image
+              Upload Image
             </label>
-            <input type="file" name="file" id="" />
+            <input
+            {...register('image')}
+            type="file" name="image" id="" />
           </div>
 
           <div>

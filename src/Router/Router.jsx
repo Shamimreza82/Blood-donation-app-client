@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         path: '/', 
         element: <MainLayout></MainLayout>, 
     }, 
+    // {
+    //     path: '/blog', 
+    //     element: <
+    // },
     {
         path: '/login', 
         element: <Login></Login>
@@ -44,6 +48,7 @@ const router = createBrowserRouter([
                 index: true, 
                 element: <DashboardHome></DashboardHome>
             },
+           
 
             // donor Route
             {

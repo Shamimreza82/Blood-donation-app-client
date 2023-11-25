@@ -79,7 +79,7 @@ function Navber(props) {
             </Link>
           </Button>
           <Button>
-            <Link to='/' className='text-black'>
+            <Link to='/blog' className='text-black'>
            Blog
             </Link>
           </Button>

@@ -252,7 +252,7 @@ export default function Register() {
             </Grid>
           </Box>
           <div>
-            <SocialLogin></SocialLogin>
+            {/* <SocialLogin></SocialLogin> */}
           </div>
         </Box>
         <Copyright sx={{ mt: 2 }} />

@@ -11,7 +11,7 @@ import { BsGraphUp } from 'react-icons/bs'
 import ToggleButton from './ToggleButton'
 import useAuth from '../../../Hooks/useAuth'
 import useUserInfo from '../../../Hooks/useUserInfo'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -152,7 +152,12 @@ const Sidebar = () => {
           
             <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
            <GrLogout className='w-5 h-5' />
-
+            
+            <Link to='/' className='mx-4 font-medium'>Home Page</Link>
+          </button>
+            <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
+           <GrLogout className='w-5 h-5' />
+            
             <span onClick={() => logeOutUser(navigate('/'))} className='mx-4 font-medium'>Logout</span>
           </button>
         </div>
