@@ -80,16 +80,27 @@ const Sidebar = () => {
               label='Profile'
               address='/dashboard/profile'
               />
-              <MenuItem
+              {singelUser?.role === 'volunteer' && <MenuItem
                 icon={BsGraphUp}
                 label='My Donation'
                 address='/dashboard/myDonationRequest'
-              />
-              <MenuItem
+              />}
+
+              {singelUser?.role === 'donor' && <MenuItem
+                icon={BsGraphUp}
+                label='My Donation'
+                address='/dashboard/myDonationRequest'
+              />}
+              {singelUser?.role === 'donor' && <MenuItem
                 icon={BsGraphUp}
                 label='Create Donation'
                 address='/dashboard/createDonation'
-              />
+              />}
+              {singelUser?.role === 'volunteer' && <MenuItem
+                icon={BsGraphUp}
+                label='Create Donation'
+                address='/dashboard/createDonation'
+              />}
 
 
               {/* Admin Role */}
@@ -100,16 +111,34 @@ const Sidebar = () => {
                 label='All Users'
                 address='/dashboard/allUsers'
               />}
-              {singelUser?.role === 'admin' || singelUser?.role === 'volunteer' && <MenuItem
+              { singelUser?.role === 'admin'  && <MenuItem
+                icon={BsGraphUp}
+                label='All Blood Donation Request'
+                address='/dashboard/allBloodDonationRequest'
+              />}
+              { singelUser?.role === 'volunteer'  && <MenuItem
+                icon={BsGraphUp}
+                label='All Blood Donation Request'
+                address='/dashboard/allBloodDonationRequest'
+              />}
+
+              {singelUser?.role === 'volunteer' && <MenuItem
                 icon={BsGraphUp}
                 label='Donation Request'
                 address='/dashboard/donationRequest'
               />}
-              {singelUser?.role === 'admin' || singelUser?.role === 'volunteer' && <MenuItem
+              
+              {singelUser?.role === 'admin' && <MenuItem
                 icon={BsGraphUp}
-                label='Content Mangement'
+                label='Content Management'
                 address='/dashboard/contentManagement'
               />}
+              {singelUser?.role === 'volunteer' && <MenuItem
+                icon={BsGraphUp}
+                label='Content Management'
+                address='/dashboard/contentManagement'
+              />}
+
               {/* volienteer router  */}
 
               {/* Menu Items */}

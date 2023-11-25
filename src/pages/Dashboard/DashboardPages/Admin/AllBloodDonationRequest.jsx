@@ -1,48 +1,67 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
-import { MdBlock } from "react-icons/md";
-import { useEffect, useState } from "react";
-import useAuth from "../../../../Hooks/useAuth";
-
-const AllUsers = () => {
-  const axiosPublic = useAxiosPublic();
-  const [roles, setRoles] = useState('');
-    const {user} = useAuth()
-
-  const { data: allUsers = [], refetch } = useQuery({
-    queryKey: ["allusers"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/users");
-      return res.data;
-    },
-  });
-
-  console.log(allUsers);
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import Swal from "sweetalert2";
+import useUserInfo from "../../../../Hooks/useUserInfo";
 
 
-//   const handelRoles = async () => {
-//     const res = await axiosPublic.put(`/userRole/${user?.email}`, {role: roles} )
-//     console.log(res.data);
-//         refetch()  
- 
-//   }
+const AllBloodDonationRequest = () => {
+
+    const [singelUser] = useUserInfo() 
+
+    const axiosSecure = useAxiosSecure()
+
+    const {data: allDonation =[], refetch} = useQuery({
+        queryKey: ["allDonation"], 
+        queryFn: async () => {
+            const res = await axiosSecure.get('/donationRequest')
+            return res.data 
+        }
+    })
+
+    console.log(allDonation);
 
 
-//   useEffect(() =>{
-//     handelRoles()
-//   }, [roles])
+    const handelDelete = (id) => {
+        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then( async(result) => {
+            if (result.isConfirmed) {
+
+            const res = await axiosSecure.delete(`/donationRequest/${id}`)
+            console.log(res.data);
+            refetch()
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+    }
 
 
-  return (
-    <div>
-      <section className="container px-4 mx-auto ">
+
+    return (
+        <div>
+            <h1 className="text-center py-8 text-3xl font-bold">All Blood Donation request</h1>
+            <section className="container px-4 mx-auto ">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             Team members
           </h2>
 
           <span className="px-3 py-1 text-xs text-blue-800 bg-blue-100 rounded-full dark: dark:text-blue-800">
-            {allUsers.length} users
+             Total Donation: {allDonation.length}
           </span>
         </div>
 
@@ -58,7 +77,7 @@ const AllUsers = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <div className="flex items-center gap-x-3">
-                          <span className="text-gray-600 font-bold">Name</span>
+                          <span className="text-gray-600 font-bold">Recipient Name</span>
                         </div>
                       </th>
 
@@ -68,7 +87,7 @@ const AllUsers = () => {
                       >
                         <button className="flex items-center gap-x-2">
                           <span className="text-gray-600 font-bold">
-                            Status
+                            Location
                           </span>
 
                           <svg
@@ -104,7 +123,7 @@ const AllUsers = () => {
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <button className="flex items-center gap-x-2">
-                          <span className="text-gray-600 font-bold">Role</span>
+                          <span className="text-gray-600 font-bold">Donation Date</span>
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -127,94 +146,91 @@ const AllUsers = () => {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
                       >
-                        Email address
+                        Donation Time
                       </th>
                       <th
                         scope="col"
                         className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
                       >
-                        Block User
+                        Donation Status
                       </th>
-                      <th scope="col" className="relative py-3.5 px-4">
-                        <span className="text-gray-600 font-bold">
-                          User Role
-                        </span>
-                      </th>
+                     { singelUser.role ==='admin' && <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
+                      >
+                        Edit
+                      </th>}
+                     { singelUser.role ==='admin' && <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
+                      >
+                        Delete
+                      </th>}
+
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-300 ">
-                    {allUsers.map((users) => (
-                      <tr key={users._id}>
-                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center gap-x-3">
-                            <div className="flex items-center gap-x-2">
-                              <img
-                                className="object-cover w-10 h-10 rounded-full"
-                                src={users.image}
-                                alt=""
-                              />
-                              <div>
-                                <h2 className="font-medium text-gray-800 dark:text-Blaxk ">
-                                  {users.Name}
-                                </h2>
-                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                  @{users.Name}
-                                </p>
+               
+                    {
+                        allDonation.map(allDonation => 
+                            <tr key={allDonation._id}>
+                            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center gap-x-3">
+                                <div className="flex items-center gap-x-2">
+                                 
+                                  <div>
+                                    <p className="text-base font-bold text-gray-00 dark:text-gray-700">
+                                      {allDonation.recipientName}
+                                    </p>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-
-                            <h2 className="text-sm font-normal text-emerald-500">
-                              Active
-                            </h2>
-                          </div>
-                        </td>
-                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                            <h2 className="text-sm font-normal text-red-500">
-                              {users?.role}
-                            </h2>
-                          </div>
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-900 whitespace-nowrap">
-                          {users.email}
-                        </td>
-
-                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                            <h2 className="text-sm font-normal  text-red-500">
-                              <MdBlock></MdBlock>
-                            </h2>
-                          </div>
-                        </td>
-                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center ml-10  px-3 py-1 rounded-full gap-x-2 ">
-                            <label className="text-gray-700 flex" for="">
-                              <select
-                                id="animals"
-                                onChange={(e) => setRoles(e.target.value)}
-                                className="block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                                name="animals"
-                              >
-                                <option value="">Select an option</option>
-                                <option value="admin">Admin</option>
-                                <option value="donor">Donor</option>
-                                <option value="volunteer">Volunteer</option>
-                              </select>
-                              <div className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <h2 className="text-sm font-normal  text-red-500">
-                                  <MdBlock></MdBlock>
+                            </td>
+                            <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
+                            
+    
+                                <h2 className="text-sm font-normal text-emerald-500">
+                                  {allDonation.district}, {allDonation.upazila}
                                 </h2>
                               </div>
-                            </label>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                            </td>
+                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                                <h2 className="text-sm font-normal text-red-500">
+                                 {allDonation.date}
+                                </h2>
+                              </div>
+                            </td>
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-900 whitespace-nowrap">
+                            {allDonation.time}
+                            </td>
+                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                                <h2 className="text-sm font-normal text-red-500">
+                                 {allDonation.status}
+                                </h2>
+                              </div>
+                            </td>
+                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              { singelUser.role ==='admin' && <Link to={`/dashboard/createDonationUpdate/${allDonation._id}`}>
+                              <div  className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-green-100/60 ">
+                                <h2 className="text-sm font-normal text-green-500">
+                                 <FaEdit className="text-2xl"></FaEdit>
+                                </h2>
+                              </div></Link>}
+                            </td>
+                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              {singelUser.role ==='admin' && <div onClick={()=> handelDelete(allDonation._id)} className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                                <h2 className="text-sm font-normal text-red-500 cursor-pointer">
+                                 <MdDeleteForever className="text-2xl"></MdDeleteForever>
+                                </h2>
+                              </div>}
+                            </td>
+                          </tr>
+                            )
+                    }  
+                   
                   </tbody>
                 </table>
               </div>
@@ -222,7 +238,7 @@ const AllUsers = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-6">
+        {/* <div className="flex items-center justify-between mt-6">
           <a
             href="#"
             className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
@@ -311,10 +327,10 @@ const AllUsers = () => {
               />
             </svg>
           </a>
-        </div>
+        </div> */}
       </section>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default AllUsers;
+export default AllBloodDonationRequest;

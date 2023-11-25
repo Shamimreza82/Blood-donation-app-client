@@ -14,6 +14,8 @@ import ContantManagement from "../pages/Dashboard/DashboardPages/Admin/ContantMa
 import DonationRequestAdmin from "../pages/Dashboard/DashboardPages/Admin/DonationRequestAdmin";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
 import CreateDonationUpdate from "../pages/Dashboard/DashboardPages/Donor/CreateDonationUpdate";
+import AllBloodDonationRequest from "../pages/Dashboard/DashboardPages/Admin/AllBloodDonationRequest";
+import AddBlog from "../pages/Dashboard/DashboardPages/Admin/AddBlog";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
                 path: '/dashboard/createDonationUpdate/:id', 
                 element: <CreateDonationUpdate></CreateDonationUpdate>, 
                 loader: ({params}) => fetch(`http://localhost:5000/createDonationUpdate/${params.id}`)
+            }, 
+            {
+                path: '/dashboard/allBloodDonationRequest', 
+                element: <AllBloodDonationRequest></AllBloodDonationRequest>
+            },
+            {
+                path: '/dashboard/contentManagement/add-Blog', 
+                element: <AddBlog></AddBlog>
             }
 
         ]
