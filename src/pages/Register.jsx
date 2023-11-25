@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -19,6 +18,7 @@ import SocialLogin from "../component/SocialLogin";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { imageUplode } from "../api/ultis";
+import logo from '../assets/images/logo.png'
 
 function Copyright(props) {
   return (
@@ -113,7 +113,7 @@ export default function Register() {
       console.log(res.data)
       if(res.data.insertedId){
         toast.success("Register Successful");
-            // Navigate('/')
+           navigate('/')
       }
     }
 
@@ -138,11 +138,14 @@ export default function Register() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
+          <div>
+            <img className="w-40" src={logo} alt="" />
+          </div>
           <Typography component="h1" variant="h5">
-          Registration
+            Registration
           </Typography>
           <Box
             component="form"

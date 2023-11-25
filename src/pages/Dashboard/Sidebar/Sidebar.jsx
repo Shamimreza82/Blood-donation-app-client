@@ -8,6 +8,10 @@ import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import { BsGraphUp } from 'react-icons/bs'
+import { CgProfile } from "react-icons/cg";
+import { FaUsers,FaHome  } from "react-icons/fa";
+import { MdOutlineBloodtype } from "react-icons/md";
+import { BiSolidBookContent } from "react-icons/bi";
 import ToggleButton from './ToggleButton'
 import useAuth from '../../../Hooks/useAuth'
 import useUserInfo from '../../../Hooks/useUserInfo'
@@ -51,7 +55,7 @@ const Sidebar = () => {
       </div>
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-red-50 w-70 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && '-translate-x-full'
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -64,7 +68,9 @@ const Sidebar = () => {
             <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{singelUser?.email}</p>
             <p className="mx-2 mt-1 text-sm font-medium text-green-600 ">{singelUser?.role}</p>
         </div>
+       
             </div>
+            <hr className='mt-2' />
           </div>
 
           {/* Nav Items */}
@@ -76,7 +82,7 @@ const Sidebar = () => {
               {/* donner Routes */}
 
               <MenuItem
-              icon={FcSettings}
+              icon={CgProfile}
               label='Profile'
               address='/dashboard/profile'
               />
@@ -107,12 +113,12 @@ const Sidebar = () => {
 
 
               { singelUser?.role === 'admin' && <MenuItem
-                icon={BsGraphUp}
+                icon={FaUsers}
                 label='All Users'
                 address='/dashboard/allUsers'
               />}
               { singelUser?.role === 'admin'  && <MenuItem
-                icon={BsGraphUp}
+                icon={MdOutlineBloodtype}
                 label='All Blood Donation Request'
                 address='/dashboard/allBloodDonationRequest'
               />}
@@ -134,7 +140,7 @@ const Sidebar = () => {
                 address='/dashboard/contentManagement'
               />}
               {singelUser?.role === 'volunteer' && <MenuItem
-                icon={BsGraphUp}
+                icon={BiSolidBookContent}
                 label='Content Management'
                 address='/dashboard/contentManagement'
               />}
@@ -151,7 +157,7 @@ const Sidebar = () => {
 
           
             <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
-           <GrLogout className='w-5 h-5' />
+           <FaHome className='w-5 h-5' />
             
             <Link to='/' className='mx-4 font-medium'>Home Page</Link>
           </button>

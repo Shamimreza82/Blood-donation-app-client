@@ -2,6 +2,9 @@ import React from "react";
 import bg from "../../assets/images/1 (1).jpg";
 import bg2 from "../../assets/images/1 (2).jpg";
 import { Link } from "react-router-dom";
+import logo from '../../assets/images/Untitled-2.png'
+import { GiJoin } from "react-icons/gi";
+import { RiFindReplaceLine } from "react-icons/ri";
 
 const Banner = () => {
   return (
@@ -18,9 +21,12 @@ const Banner = () => {
               Welcome to Life Lines
              
             </h1>
-            <strong className="block text-6xl text-left py-1 font-extrabold text-rose-700">
-                Your Platform for <br /> Saving Lives!
+            <div className="flex items-center gap-4">
+            <strong className="block md:text-6xl text-4xl text-left py-1 font-extrabold text-red-600 flex items-center gap-4 animate-pulse">
+                Your Platform for <br /> Saving Lives! 
               </strong>
+              <span><img className="w-6 animate-bounce " src={logo} alt="" /></span>
+            </div>
             <p className="mt-4 text-left max-w-lg sm:text-xl/relaxed">
               Become a Hero - Donate Blood, Donate Hope. Every Donation Is a
               Gift of Life. Together, Let's Create a Healthier Tomorrow!
@@ -29,16 +35,16 @@ const Banner = () => {
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <Link
                 to="/register"
-                className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+                className="block hover:scale-95 duration-200 w-full rounded bg-red-600 px-10 py-2 text-base font-medium text-white shadow hover:bg-red-800 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
               >
-                Join As a Donor
+                Join As a Donor <GiJoin className="inline-flex ml-2 text-lg "></GiJoin>
               </Link>
-
+              
               <a
                 href="#"
-                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+                className="block w-full hover:scale-95 duration-200 rounded bg-white px-12 py-3 text-sm font-bold text-red-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
               >
-                Search Donor
+              <RiFindReplaceLine className="inline-flex -mt-1 mr-2 text-lg animate-ping"></RiFindReplaceLine>  Search Donor
               </a>
             </div>
           </div>
