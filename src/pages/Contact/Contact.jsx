@@ -4,9 +4,9 @@ const Contact = () => {
   return (
     <div>
       <section className="bg-white ">
-        <div className="container px-6 py-12 mx-auto">
+        <div className="container max-w-7xl px-6 py-12 mx-auto">
           <div>
-            <p className="font-medium text-blue-500 dark:text-red-400">
+            <p className="font-medium text-blue-500 dark:text-red-400 ">
               Contact us
             </p>
 
@@ -30,7 +30,7 @@ const Contact = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-5 h-5 animate-bounce"
                   >
                     <path
                       stroke-linecap="round"
@@ -59,7 +59,7 @@ const Contact = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-5 h-5 animate-bounce"
                   >
                     <path
                       stroke-linecap="round"
@@ -93,7 +93,7 @@ const Contact = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-5 h-5 animate-bounce"
                   >
                     <path
                       stroke-linecap="round"
@@ -127,7 +127,7 @@ const Contact = () => {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-5 h-5 animate-bounce"
                   >
                     <path
                       stroke-linecap="round"

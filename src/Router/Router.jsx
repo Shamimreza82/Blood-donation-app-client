@@ -17,6 +17,7 @@ import CreateDonationUpdate from "../pages/Dashboard/DashboardPages/Donor/Create
 import AllBloodDonationRequest from "../pages/Dashboard/DashboardPages/Admin/AllBloodDonationRequest";
 import AddBlog from "../pages/Dashboard/DashboardPages/Admin/AddBlog";
 import Blog from "../pages/Blog/Blog";
+import DonorSearch from "../pages/Search/DonorSearch";
 
 const router = createBrowserRouter([
     {
@@ -28,10 +29,10 @@ const router = createBrowserRouter([
         path: '/blog',
         element: <Blog></Blog>
     },
-    // {
-    //     path: '/blog', 
-    //     element: <
-    // },
+    {
+        path: '/donorSearch',
+        element: <DonorSearch></DonorSearch>
+    },
     {
         path: '/login', 
         element: <Login></Login>

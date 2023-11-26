@@ -40,12 +40,12 @@ const Banner = () => {
                 Join As a Donor <GiJoin className="inline-flex ml-2 text-lg "></GiJoin>
               </Link>
               
-              <a
+              <Link to='/donorSearch'
                 href="#"
                 className="block w-full hover:scale-95 duration-200 rounded bg-white px-12 py-3 text-sm font-bold text-red-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
               >
               <RiFindReplaceLine className="inline-flex -mt-1 mr-2 text-lg animate-ping"></RiFindReplaceLine>  Search Donor
-              </a>
+              </Link>
             </div>
           </div>
           <div></div>

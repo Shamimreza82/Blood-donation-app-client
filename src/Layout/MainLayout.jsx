@@ -11,7 +11,9 @@ const MainLayout = () => {
             {/* <Navber></Navber> */}
             <Navber2></Navber2>
             <Banner></Banner>
-            <Contact></Contact>
+            <div >
+               <Contact></Contact>
+            </div>
             <Footer></Footer>
             
         </div>
