@@ -6,6 +6,7 @@ import { imageUplode } from "../../../../api/ultis";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useUserInfo from "../../../../Hooks/useUserInfo";
 
 
 const AddBlog = () => {
@@ -13,6 +14,12 @@ const AddBlog = () => {
     const [content, setContent] = useState('')
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
+    const [singleUser] = useUserInfo()
+    console.log(singleUser);
+
+    
+
+
 
 const {
   register,
@@ -30,7 +37,10 @@ const onSubmit = async (data) => {
 
 const blogPost = {
   title: title, 
+  name: singleUser?.Name, 
+  userImage: singleUser?.image, 
   content: content, 
+  date: new Date(),
   image: result?.data?.display_url, 
   status: 'draft'
 }

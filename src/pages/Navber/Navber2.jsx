@@ -10,10 +10,9 @@ const Navber2 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {logeOutUser, user} = useAuth()
 
-  const [singleUser] = useUserInfo()
   return (
     <div>
-      <nav className="md:py-2 md:fixed z-50 w-full ">
+      <nav className="md:py-2 md:fixed  z-50 w-full "> 
         <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
           <img src={logo} className="md:h-16 h-12" alt="Flowbite Logo" />
 
@@ -63,7 +62,7 @@ const Navber2 = () => {
               </li>
               <li>
                 <Link
-           
+                  to='/blog'
                   className="block md:text-base md:bg-red-600 hover:scale-105 duration-200 md:font-bold md:uppercase py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-blue-700 md:p-0 dark:text-white md:text-white md:dark:hover:text-red-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Blog

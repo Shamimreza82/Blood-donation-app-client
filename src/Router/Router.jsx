@@ -16,12 +16,18 @@ import DashboardHome from "../pages/Dashboard/DashboardHome";
 import CreateDonationUpdate from "../pages/Dashboard/DashboardPages/Donor/CreateDonationUpdate";
 import AllBloodDonationRequest from "../pages/Dashboard/DashboardPages/Admin/AllBloodDonationRequest";
 import AddBlog from "../pages/Dashboard/DashboardPages/Admin/AddBlog";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
         path: '/', 
         element: <MainLayout></MainLayout>, 
+       
     }, 
+    {
+        path: '/blog',
+        element: <Blog></Blog>
+    },
     // {
     //     path: '/blog', 
     //     element: <

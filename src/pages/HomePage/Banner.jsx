@@ -17,12 +17,12 @@ const Banner = () => {
 
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8 ">
           <div className="max-w-xl text-center ">
-            <h1 className="text-4xl font-extrabold py-2 text-left sm:text-5xl">
+            <h1 className="text-4xl font-extrabold py-2 text-slate-800 text-left sm:text-5xl">
               Welcome to Life Lines
              
             </h1>
             <div className="flex items-center gap-4">
-            <strong className="block md:text-6xl text-4xl text-left py-1 font-extrabold text-red-600 flex items-center gap-4 animate-pulse">
+            <strong className="block md:text-6xl text-4xl text-left py-3 font-extrabold text-red-600 flex items-center gap-4 animate-pulse">
                 Your Platform for <br /> Saving Lives! 
               </strong>
               <span><img className="w-6 animate-bounce " src={logo} alt="" /></span>
