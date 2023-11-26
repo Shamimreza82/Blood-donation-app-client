@@ -3,11 +3,14 @@ import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { MdBlock } from "react-icons/md";
 import { useEffect, useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
+import toast from "react-hot-toast";
+
 
 const AllUsers = () => {
   const axiosPublic = useAxiosPublic();
   const [roles, setRoles] = useState('');
-    const {user} = useAuth()
+  const {user} = useAuth()
+    
 
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allusers"],
@@ -20,12 +23,32 @@ const AllUsers = () => {
   console.log(allUsers);
 
 
-//   const handelRoles = async () => {
-//     const res = await axiosPublic.put(`/userRole/${user?.email}`, {role: roles} )
-//     console.log(res.data);
-//         refetch()  
+  const handelRoles = async (id) => {
+    const res = await axiosPublic.put(`/userRole/${id}`, {role: roles} )
+    console.log(res.data);
+    toast.success('Role change Successful')
+        refetch()  
  
-//   }
+  }
+
+
+  const blockUser = async(id) => {
+    const status = "block"
+    console.log(id, status );
+    const res = await axiosPublic.put(`/userBlock/${id}`, {status: status} )
+    console.log(res.data);
+    toast.success('User Blocked')
+        refetch()  
+  }
+
+  const unBlockUser = async (id) => {
+    const status = "active"
+    console.log(id, status );
+    const res = await axiosPublic.put(`/userUnBlock/${id}`, {status: status} )
+    console.log(res.data);
+    toast.success('User Unblocked')
+        refetch() 
+  }
 
 
 //   useEffect(() =>{
@@ -132,7 +155,7 @@ const AllUsers = () => {
                       </th>
                       <th
                         scope="col"
-                        className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
+                        className=" py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
                       >
                         Block User
                       </th>
@@ -165,18 +188,30 @@ const AllUsers = () => {
                             </div>
                           </div>
                         </td>
-                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-16 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          {
+                            users.status === 'block' && <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                            <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
 
-                            <h2 className="text-sm font-normal text-emerald-500">
-                              Active
+                            <h2 className="text-sm  font-normal text-red-600">
+                              {users.status} <MdBlock className="inline-flex"></MdBlock>
                             </h2>
                           </div>
+                          }
+                          {
+                            users.status === 'active' && <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+
+                            <h2 className="text-sm font-normal text-red-600-500">
+                              {users.status}
+                            </h2>
+                          </div>
+                          }
+
                         </td>
                         <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                            <h2 className="text-sm font-normal text-red-500">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 ">
+                            <h2 className="text-sm font-normal text-yellow-700">
                               {users?.role}
                             </h2>
                           </div>
@@ -186,11 +221,22 @@ const AllUsers = () => {
                         </td>
 
                         <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                            <h2 className="text-sm font-normal  text-red-500">
-                              <MdBlock></MdBlock>
+                          {
+                            users.status === 'block' ? <>
+                            <div onClick={()=>unBlockUser(users._id)} className="inline-flex  items-center ml-8 cursor-pointer  px-3 py-1 rounded-full gap-x-2 bg-green-100/60 hover:bg-green-400 ">
+                            <h2 className="text-sm font-normal  text-green-500 hover:text-white">
+                              Unblock
                             </h2>
                           </div>
+                            </> : <>
+                            <div onClick={()=>blockUser(users._id)} className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 hover:bg-red-400  cursor-pointer ">
+                            <h2 className="text-sm font-normal  text-red-500 hover:text-white">
+                              Block
+                            </h2>
+                          </div>
+                            </>
+                          }
+                          
                         </td>
                         <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           <div className="inline-flex items-center ml-10  px-3 py-1 rounded-full gap-x-2 ">
@@ -206,9 +252,9 @@ const AllUsers = () => {
                                 <option value="donor">Donor</option>
                                 <option value="volunteer">Volunteer</option>
                               </select>
-                              <div className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <h2 className="text-sm font-normal  text-red-500">
-                                  <MdBlock></MdBlock>
+                              <div onClick={()=>handelRoles(users._id)} className="inline-flex items-center ml-8  px-3 py-1 hover:bg-green-600 rounded-full gap-x-2 bg-green-100/60 ">
+                                <h2 className="text-sm font-normal hover:text-white  text-green-500 ">
+                                  Submit
                                 </h2>
                               </div>
                             </label>
