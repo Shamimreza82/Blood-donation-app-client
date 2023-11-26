@@ -223,14 +223,14 @@ const AllUsers = () => {
                         <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                           {
                             users.status === 'block' ? <>
-                            <div onClick={()=>unBlockUser(users._id)} className="inline-flex  items-center ml-8 cursor-pointer  px-3 py-1 rounded-full gap-x-2 bg-green-100/60 hover:bg-green-400 ">
-                            <h2 className="text-sm font-normal  text-green-500 hover:text-white">
+                            <div onClick={()=>unBlockUser(users._id)} className="inline-flex  items-center ml-8 cursor-pointer  px-3 py-1 rounded-full gap-x-2  bg-green-400 hover:bg-green-600 ">
+                            <h2 className="text-sm font-normal  text-white">
                               Unblock
                             </h2>
                           </div>
                             </> : <>
-                            <div onClick={()=>blockUser(users._id)} className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2 bg-red-100/60 hover:bg-red-400  cursor-pointer ">
-                            <h2 className="text-sm font-normal  text-red-500 hover:text-white">
+                            <div onClick={()=>blockUser(users._id)} className="inline-flex items-center ml-8  px-3 py-1 rounded-full gap-x-2  bg-red-400 hover:bg-red-700  cursor-pointer ">
+                            <h2 className="text-sm font-normal  text-white">
                               Block
                             </h2>
                           </div>
@@ -252,8 +252,8 @@ const AllUsers = () => {
                                 <option value="donor">Donor</option>
                                 <option value="volunteer">Volunteer</option>
                               </select>
-                              <div onClick={()=>handelRoles(users._id)} className="inline-flex items-center ml-8  px-3 py-1 hover:bg-green-600 rounded-full gap-x-2 bg-green-100/60 ">
-                                <h2 className="text-sm font-normal hover:text-white  text-green-500 ">
+                              <div onClick={()=>handelRoles(users._id)} className="inline-flex items-center ml-8  px-3 py-1 hover:bg-green-800 rounded-full gap-x-2 bg-green-600">
+                                <h2 className="text-sm font-normal text-white   ">
                                   Submit
                                 </h2>
                               </div>

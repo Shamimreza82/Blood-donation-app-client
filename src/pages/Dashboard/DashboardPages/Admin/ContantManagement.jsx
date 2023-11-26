@@ -4,6 +4,7 @@ import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import useUserInfo from "../../../../Hooks/useUserInfo";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ContantManagement = () => {
   const axiosPublic = useAxiosPublic()
@@ -46,6 +47,16 @@ const handelDeleteBloge = (id) => {
 }
 
 
+const handelPublish = async (id) => {
+  const status = "publish"
+  console.log(id, status );
+  const res = await axiosPublic.put(`/blog/${id}`, {status: status} )
+  console.log(res.data);
+  toast.success('Blog Published')
+      refetch() 
+}
+
+
   return (
     <div>
       <h1 className="text-center py-8 text-3xl font-bold border-b">Blogs </h1>
@@ -69,6 +80,7 @@ const handelDeleteBloge = (id) => {
               { singleUser?.role === 'admin' && <div className="space-x-4">
                   <button onClick={() =>handelDeleteBloge(blog._id) }  className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">delete</button>
                   <button className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Edit</button>
+                  { blog.status === 'publish' ?  <button onClick={()=>handelPublish(blog._id)} className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">UnPublish</button> : <><button onClick={()=>handelPublish(blog._id)} className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Publish</button></>}
               </div>}
             </div>)
           }

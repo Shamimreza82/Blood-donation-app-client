@@ -155,6 +155,12 @@ const DonerHome = () => {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
                       >
+                       Details
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
+                      >
                         Edit
                       </th>
                       <th
@@ -207,6 +213,13 @@ const DonerHome = () => {
                                 <h2 className="text-sm font-normal text-red-500">
                                  {donation.status}
                                 </h2>
+                              </div>
+                            </td>
+                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                                <Link to={`/dashboard/contentManagement/detailsDonationRequest/${donation._id}` }className="text-sm font-normal text-red-500">
+                                 View 
+                                </Link>
                               </div>
                             </td>
                             <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">

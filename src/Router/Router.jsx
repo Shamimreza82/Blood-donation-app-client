@@ -18,11 +18,14 @@ import AllBloodDonationRequest from "../pages/Dashboard/DashboardPages/Admin/All
 import AddBlog from "../pages/Dashboard/DashboardPages/Admin/AddBlog";
 import Blog from "../pages/Blog/Blog";
 import DonorSearch from "../pages/Search/DonorSearch";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import DetailsDonationRequest from "../pages/Dashboard/DashboardPages/Donor/detailsDonationRequest";
 
 const router = createBrowserRouter([
     {
         path: '/', 
         element: <MainLayout></MainLayout>, 
+        errorElement: <ErrorPage></ErrorPage>
        
     }, 
     {
@@ -102,6 +105,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <AddBlog></AddBlog>
                 </PrivateRoute>
+            }, 
+            {
+                path: '/dashboard/contentManagement/detailsDonationRequest/:id', 
+                element: <DetailsDonationRequest></DetailsDonationRequest>, 
+                loader: ({params}) => fetch(`http://localhost:5000/detailsDonationRequest/${params.id}`)
             }
 
         ]
