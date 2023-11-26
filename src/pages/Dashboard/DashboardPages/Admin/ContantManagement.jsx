@@ -48,7 +48,8 @@ const handelDeleteBloge = (id) => {
 
   return (
     <div>
-        <div className="flex justify-end">
+      <h1 className="text-center py-8 text-3xl font-bold border-b">Blogs </h1>
+        <div className="flex justify-end mt-4">
             <Link to='/dashboard/contentManagement/add-Blog' className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>
         </div>
         <div className="grid grid-cols-2 gap-5">

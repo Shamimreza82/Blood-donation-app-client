@@ -40,21 +40,26 @@ const Blog = () => {
           </div>
         </div>
         <div>
-          {/* <button className='flex '>Publish Your a blog</button> */}
-          <section className="text-gray-600 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto">
+          
+        <div className="flex justify-end max-w-7xl m-auto mt-28 ">
+            <Link to='/dashboard/contentManagement/add-Blog' className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Post Blog</Link>
+        </div>
+       
+          <section className="text-gray-600 body-font overflow-hidden max-w-7xl m-auto">
+            <div className="container px-5 py-8 mx-auto">
               <div className="flex flex-wrap -m-12">
                 {blogs.map((blog) => (
                   <div
                     key={blog._id}
                     className="p-12 md:w-1/2 flex flex-col items-start"
                   >
-                    <span className="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">
+                    <span className="inline-block py-1 px-2 rounded bg-red-50 text-red-500 text-xs font-medium tracking-widest">
                       CATEGORY
                     </span>
-                    <h2 className="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
+                    <h2 className="sm:text-3xl text-2xl title-font font-medium py-4 text-gray-900 mt-4 mb-4">
                       {blog.title}
                     </h2>
+                    
                     <img className=" rounded-md" src={blog.image} alt="" />
                     <div
                       className="leading-relaxed mb-8 mt-3"
@@ -62,7 +67,7 @@ const Blog = () => {
                     ></div>
                     <div className="">
                     <div className="flex items-center md:gap-80 flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                      <a className="text-indigo-500 inline-flex items-center">
+                      <a className="text-red-500 inline-flex items-center">
                         Learn More
                         <svg
                           className="w-4 h-4 ml-2"

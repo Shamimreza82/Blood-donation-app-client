@@ -62,8 +62,8 @@ const blogPost = {
 
 
   return (
-    <div>
-      <div className="w-[70%] m-auto">
+    <div className="flex justify-center items-center h-screen">
+      <div className="md:w-[70%] m-auto">
         <div className="py-6 font-bold text-gray-700 mb-6">
           <h1 className="text-3xl">New Blog Post Entry</h1>
           <p>Kindly provide clearly the following information.</p>
@@ -117,13 +117,13 @@ const blogPost = {
             </label>
             <input
             {...register('image')}
-            type="file" name="image" id="" />
+            type="file" name="image" id="" className="bg-gray-100 py-2 pl-2 rounded-md" />
           </div>
 
           <div>
             <button
               type="submit"
-              className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="flex items-center justify-center  px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-red-600 rounded-xl hover:bg--700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             >
               Create Post
             </button>

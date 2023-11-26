@@ -66,8 +66,6 @@ const router = createBrowserRouter([
                 path: '/dashboard/createDonation', 
                 element: <DonationRequst></DonationRequst>
             }, 
-
-            //////////////////////// app rols 
             {
                 path: '/dashboard/profile', 
                 element: <Profile></Profile>
@@ -77,7 +75,7 @@ const router = createBrowserRouter([
                 element: <UpdateProfile></UpdateProfile>
             }, 
 
-            ////// admin role
+            /////////////////////Dashboard Routes/////////////////////
             {
                 path: '/dashboard/allUsers', 
                 element: <AllUsers></AllUsers>
@@ -101,7 +99,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/contentManagement/add-Blog', 
-                element: <AddBlog></AddBlog>
+                element: <PrivateRoute>
+                    <AddBlog></AddBlog>
+                </PrivateRoute>
             }
 
         ]

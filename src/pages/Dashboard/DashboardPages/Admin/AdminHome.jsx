@@ -1,10 +1,31 @@
-import React from "react";
 import { FaUsers } from "react-icons/fa";
 import { BiDonateBlood } from "react-icons/bi";
 import { RiRefund2Fill } from "react-icons/ri";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const AdminHome = () => {
-    
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure()
+    const { data: allUsers = [], refetch } = useQuery({
+        queryKey: ["allusers"],
+        queryFn: async () => {
+          const res = await axiosPublic.get("/users");
+          return res.data;
+        },
+      });
+
+      const {data: allDonation =[], } = useQuery({
+        queryKey: ["allDonation"], 
+        queryFn: async () => {
+            const res = await axiosSecure.get('/donationRequest')
+            return res.data 
+        }
+    })
+
+
+
   return (
     <div>
       <h1 className="text-center text-3xl py-5 font-bold">Welcome</h1>
@@ -20,8 +41,8 @@ const AdminHome = () => {
             </div>
             <div className="flex flex-col justify-start">
               <p className="my-4 text-4xl font-bold text-left text-gray-700 ">
-                34,500
-                <span className="text-sm">$</span>
+                {allUsers.length}
+                <span className="text-sm"></span>
               </p>
             </div>
           </div>
@@ -35,8 +56,8 @@ const AdminHome = () => {
             </div>
             <div className="flex flex-col justify-start">
               <p className="my-4 text-4xl font-bold text-left text-gray-700 ">
-                34,500
-                <span className="text-sm">$</span>
+                {allDonation.length}
+                <span className="text-sm"></span>
               </p>
             </div>
           </div>

@@ -35,7 +35,8 @@ const AllUsers = () => {
 
   return (
     <div>
-      <section className="container px-4 mx-auto ">
+      <h1 className="text-center py-8 text-3xl font-bold border-b">All Users</h1>
+      <section className="container px-4 mx-auto mt-3">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             Team members

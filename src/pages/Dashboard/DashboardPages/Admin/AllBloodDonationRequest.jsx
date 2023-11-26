@@ -53,8 +53,8 @@ const AllBloodDonationRequest = () => {
 
     return (
         <div>
-            <h1 className="text-center py-8 text-3xl font-bold">All Blood Donation request</h1>
-            <section className="container px-4 mx-auto ">
+            <h1 className="text-center py-8 text-3xl font-bold border-b">All Blood Donation request</h1>
+            <section className="container px-4 mx-auto mt-4 ">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             Team members
