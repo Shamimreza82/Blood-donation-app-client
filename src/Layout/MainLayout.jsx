@@ -5,6 +5,7 @@ import Contact from '../pages/Contact/Contact';
 import Testimonial from '../pages/Testimonial/Testimonial';
 import ComingEvents from '../pages/ComingEvents';
 import OurHeros from '../pages/OurHeros';
+import Qna from '../pages/Qna';
 
 const MainLayout = () => {
     return (
@@ -15,6 +16,7 @@ const MainLayout = () => {
             <OurHeros></OurHeros>
             <ComingEvents></ComingEvents>
             <Testimonial></Testimonial>
+            <Qna></Qna>
             <Contact></Contact>
             <Footer></Footer>       
         </div>

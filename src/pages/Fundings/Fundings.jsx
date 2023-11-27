@@ -12,8 +12,10 @@ const Fundings = () => {
         <div>
             <Navber2></Navber2>
            <div className='max-w-xl m-auto'>
+            <hr />
            <Elements stripe={stripePromise}>
-                <div className='pt-60'>
+            
+                <div className='md:pt-40'>
                 <CheckoutForm></CheckoutForm>
                 </div>
             </Elements>

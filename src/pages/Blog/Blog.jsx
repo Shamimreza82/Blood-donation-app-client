@@ -6,6 +6,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import Footer from "../Footer/Footer";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
@@ -143,6 +144,7 @@ const Blog = () => {
           </section>
         </div>
       </div>
+
     </div>
   );
 };
