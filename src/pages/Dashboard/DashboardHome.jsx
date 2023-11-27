@@ -1,6 +1,7 @@
 import useUserInfo from '../../Hooks/useUserInfo';
 import AdminHome from './DashboardPages/Admin/AdminHome';
 import DonerHome from './DashboardPages/Donor/DonerHome';
+import VolunteerHome from './DashboardPages/Volunteer/VolunteerHome';
 
 const DashboardHome = () => {
     const [singleUser] = useUserInfo()
@@ -8,8 +9,7 @@ const DashboardHome = () => {
     return (
         <div>
             {singleUser?.role === 'admin' && <AdminHome></AdminHome>}
-            {singleUser?.role === 'donor' && <h1 className='text-3xl text-center'>Welcome Rakib</h1>}
-           
+            {singleUser?.role === 'volunteer' && <VolunteerHome></VolunteerHome>}
             {singleUser?.role === 'donor' && <DonerHome></DonerHome>}
         </div>
     );

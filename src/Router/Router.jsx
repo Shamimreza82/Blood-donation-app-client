@@ -20,13 +20,13 @@ import Blog from "../pages/Blog/Blog";
 import DonorSearch from "../pages/Search/DonorSearch";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import DetailsDonationRequest from "../pages/Dashboard/DashboardPages/Donor/detailsDonationRequest";
+import Fundings from "../pages/Fundings/Fundings";
 
 const router = createBrowserRouter([
     {
         path: '/', 
         element: <MainLayout></MainLayout>, 
-        errorElement: <ErrorPage></ErrorPage>
-       
+        errorElement: <ErrorPage></ErrorPage>  
     }, 
     {
         path: '/blog',
@@ -35,6 +35,10 @@ const router = createBrowserRouter([
     {
         path: '/donorSearch',
         element: <DonorSearch></DonorSearch>
+    },
+    {
+        path: '/fundings',
+        element: <PrivateRoute><Fundings></Fundings></PrivateRoute>
     },
     {
         path: '/login', 
@@ -52,7 +56,7 @@ const router = createBrowserRouter([
     }, 
     {
         path: '/dashboard', 
-        element: <Dashboard></Dashboard>, 
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, 
         children: [
             {
                 index: true, 
@@ -67,7 +71,9 @@ const router = createBrowserRouter([
             }, 
             {
                 path: '/dashboard/createDonation', 
-                element: <DonationRequst></DonationRequst>
+                element: <PrivateRoute>
+                    <DonationRequst></DonationRequst>
+                </PrivateRoute>
             }, 
             {
                 path: '/dashboard/profile', 
@@ -79,6 +85,7 @@ const router = createBrowserRouter([
             }, 
 
             /////////////////////Dashboard Routes/////////////////////
+
             {
                 path: '/dashboard/allUsers', 
                 element: <AllUsers></AllUsers>
@@ -103,12 +110,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/contentManagement/add-Blog', 
                 element: <PrivateRoute>
-                    <AddBlog></AddBlog>
-                </PrivateRoute>
+                                <AddBlog></AddBlog>
+                         </PrivateRoute>
             }, 
             {
                 path: '/dashboard/contentManagement/detailsDonationRequest/:id', 
-                element: <DetailsDonationRequest></DetailsDonationRequest>, 
+                element: <PrivateRoute><DetailsDonationRequest></DetailsDonationRequest></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/detailsDonationRequest/${params.id}`)
             }
 

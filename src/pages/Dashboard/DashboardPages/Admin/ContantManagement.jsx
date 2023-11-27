@@ -5,6 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import useUserInfo from "../../../../Hooks/useUserInfo";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { MdPublishedWithChanges, MdOutlineUnpublished  } from "react-icons/md";
 
 const ContantManagement = () => {
   const axiosPublic = useAxiosPublic()
@@ -56,12 +59,21 @@ const handelPublish = async (id) => {
       refetch() 
 }
 
+const handelUnPublish = async (id) => {
+  const status = "draft"
+  console.log(id, status );
+  const res = await axiosPublic.put(`/blog/${id}`, {status: status} )
+  console.log(res.data);
+  toast.success('Blog Published')
+      refetch() 
+}
+
 
   return (
     <div>
       <h1 className="text-center py-8 text-3xl font-bold border-b">Blogs </h1>
         <div className="flex justify-end mt-4">
-            <Link to='/dashboard/contentManagement/add-Blog' className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>
+            <Link to='/dashboard/contentManagement/add-Blog' className=" bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>
         </div>
         <div className="grid grid-cols-2 gap-5">
           {
@@ -77,10 +89,15 @@ const handelPublish = async (id) => {
               >
 
               </div>
-              { singleUser?.role === 'admin' && <div className="space-x-4">
-                  <button onClick={() =>handelDeleteBloge(blog._id) }  className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">delete</button>
-                  <button className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Edit</button>
-                  { blog.status === 'publish' ?  <button onClick={()=>handelPublish(blog._id)} className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">UnPublish</button> : <><button onClick={()=>handelPublish(blog._id)} className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Publish</button></>}
+              { singleUser?.role === 'admin' && 
+                <div className="space-x-4 mt-4">
+                  <button onClick={() =>handelDeleteBloge(blog._id) }  className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">delete <MdDeleteForever className="inline-flex -mt-1 "></MdDeleteForever></button>
+
+                  <button className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">Edit <FaEdit className="inline-flex -mt-1 ml-1"></FaEdit></button>
+                  { blog.status === 'publish' ?  
+                  <button onClick={()=>handelUnPublish(blog._id)} className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">Unpublish <MdOutlineUnpublished className="inline-flex -mt-1 "></MdOutlineUnpublished></button> 
+                  :
+                  <><button onClick={()=>handelPublish(blog._id)} className=" bg-green-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-green-800 ">Publish <MdPublishedWithChanges className="inline-flex -mt-1 "></MdPublishedWithChanges></button></>}
               </div>}
             </div>)
           }

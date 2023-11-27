@@ -18,7 +18,7 @@ import useAuth from '../Hooks/useAuth';
 // import { useNavigate } from 'react-router-dom';
 // import SocialLogin from '../component/SocialLogin';
 // import toast from 'react-hot-toast';
-
+import logo from '../assets/images/logo.png'
 
 
 
@@ -73,9 +73,9 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+        
+            <img className='h-16' src={logo} alt="" />
+          
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -108,7 +108,7 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: 'red' }}
             >
               Sign In
             </Button>

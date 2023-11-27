@@ -7,58 +7,77 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { BiDonateHeart } from "react-icons/bi";
 
 const DonerHome = () => {
-    const axiosPublic = useAxiosPublic()
-    const {user} = useAuth()
+  const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
+ const [singleUser] = useUserInfo()
 
-    const {data: myDonation =[], refetch} = useQuery({
-        queryKey: ['donation', user?.email ], 
-        queryFn: async () => {
-            const res = await axiosPublic.get(`/donationRequest/${user?.email}`)
-                return await res.data
-        }
-    })
-    console.log(myDonation);
+  const { data: myDonation = [], refetch } = useQuery({
+    queryKey: ["donation", user?.email],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/donationRequest/${user?.email}`);
+      return await res.data;
+    },
+  });
+  console.log(myDonation);
 
-    const handelDelete = (id) => {
-        console.log(id);
+  if (myDonation == false) {
+    return (
+      <div >
+        <div className="min-h-screen flex justify-center items-center" >
+          <div role="alert" className="alert alert-info bg-red-100/60 border-none ">
+          <BiDonateHeart className="text-7xl text-red-600 "></BiDonateHeart>
+            <span>
+              You have not requested for donation !! Please make a Donation
+              Request{" "}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const handelDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.delete(`/donationRequest/${id}`);
+        console.log(res.data);
+        refetch();
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then( async(result) => {
-            if (result.isConfirmed) {
-
-            const res = await axiosPublic.delete(`/donationRequest/${id}`)
-            console.log(res.data);
-            refetch()
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
-          });
-    }
-
-
-
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <div>
-      <section className="container px-4 mx-auto ">
+      <div>
+        <h1 className="text-2xl text-center">Welcome <span className="text-red-600 font-bold">{singleUser.Name}</span></h1>
+        <h1 className="text-center py-3 text-xl font-bold">Your Resent Donation Request</h1>
+        <hr />
+      </div>
+      <section className="container px-4 mx-auto mt-5">
         <div className="flex items-center gap-x-3">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             Team members
           </h2>
 
           <span className="px-3 py-1 text-xs text-blue-800 bg-blue-100 rounded-full dark: dark:text-blue-800">
-             Total Donation: {myDonation.length}
+            Total Donation: {myDonation.length}
           </span>
         </div>
 
@@ -74,7 +93,9 @@ const DonerHome = () => {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <div className="flex items-center gap-x-3">
-                          <span className="text-gray-600 font-bold">Recipient Name</span>
+                          <span className="text-gray-600 font-bold">
+                            Recipient Name
+                          </span>
                         </div>
                       </th>
 
@@ -120,7 +141,9 @@ const DonerHome = () => {
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                       >
                         <button className="flex items-center gap-x-2">
-                          <span className="text-gray-600 font-bold">Donation Date</span>
+                          <span className="text-gray-600 font-bold">
+                            Donation Date
+                          </span>
 
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +178,7 @@ const DonerHome = () => {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
                       >
-                       Details
+                        Details
                       </th>
                       <th
                         scope="col"
@@ -169,78 +192,80 @@ const DonerHome = () => {
                       >
                         Delete
                       </th>
-
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-300 ">
-               
-                    {
-                        myDonation.map(donation => 
-                            <tr key={donation._id} >
-                            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div className="inline-flex items-center gap-x-3">
-                                <div className="flex items-center gap-x-2">
-                                  <h1>{myDonation?.recipientName}</h1>
-                                  <div>
-                                    <p className="text-base font-bold text-gray-00 dark:text-gray-700">
-                                      {donation.recipientName}
-                                    </p>
-                                  </div>
-                                </div>
+                    {myDonation.map((donation) => (
+                      <tr key={donation._id}>
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
+                            <div className="flex items-center gap-x-2">
+                              <h1>{myDonation?.recipientName}</h1>
+                              <div>
+                                <p className="text-base font-bold text-gray-00 dark:text-gray-700">
+                                  {donation.recipientName}
+                                </p>
                               </div>
-                            </td>
-                            <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
-                            
-    
-                                <h2 className="text-sm font-normal text-emerald-500">
-                                  {donation.district}, {donation.upazila}
-                                </h2>
-                              </div>
-                            </td>
-                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <h2 className="text-sm font-normal text-red-500">
-                                 {donation.date}
-                                </h2>
-                              </div>
-                            </td>
-                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-900 whitespace-nowrap">
-                            {donation.time}
-                            </td>
-                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <h2 className="text-sm font-normal text-red-500">
-                                 {donation.status}
-                                </h2>
-                              </div>
-                            </td>
-                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <Link to={`/dashboard/contentManagement/detailsDonationRequest/${donation._id}` }className="text-sm font-normal text-red-500">
-                                 View 
-                                </Link>
-                              </div>
-                            </td>
-                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <Link to={`/dashboard/createDonationUpdate/${donation._id}`}>
-                              <div  className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-green-100/60 ">
-                                <h2 className="text-sm font-normal text-green-500">
-                                 <FaEdit className="text-2xl"></FaEdit>
-                                </h2>
-                              </div></Link>
-                            </td>
-                            <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                              <div onClick={()=> handelDelete(donation._id)} className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
-                                <h2 className="text-sm font-normal text-red-500 cursor-pointer">
-                                 <MdDeleteForever className="text-2xl"></MdDeleteForever>
-                                </h2>
-                              </div>
-                            </td>
-                          </tr>
-                            )
-                    }  
-                   
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 ">
+                            <h2 className="text-sm font-normal text-emerald-500">
+                              {donation.district}, {donation.upazila}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                            <h2 className="text-sm font-normal text-red-500">
+                              {donation.date}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-900 whitespace-nowrap">
+                          {donation.time}
+                        </td>
+                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 ">
+                            <h2 className="text-sm font-normal text-red-500">
+                              {donation.status}
+                            </h2>
+                          </div>
+                        </td>
+                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-500 hover:bg-red-600">
+                            <Link
+                              to={`/dashboard/contentManagement/detailsDonationRequest/${donation._id}`}
+                              className="text-sm font-normal text-white"
+                            >
+                              View
+                            </Link>
+                          </div>
+                        </td>
+                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <Link
+                            to={`/dashboard/createDonationUpdate/${donation._id}`}
+                          >
+                            <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-green-100/60 ">
+                              <h2 className="text-sm font-normal text-green-500">
+                                <FaEdit className="text-2xl"></FaEdit>
+                              </h2>
+                            </div>
+                          </Link>
+                        </td>
+                        <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div
+                            onClick={() => handelDelete(donation._id)}
+                            className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-100/60 "
+                          >
+                            <h2 className="text-sm font-normal text-red-500 cursor-pointer">
+                              <MdDeleteForever className="text-2xl"></MdDeleteForever>
+                            </h2>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

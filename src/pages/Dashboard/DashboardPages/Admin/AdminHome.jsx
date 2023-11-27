@@ -24,6 +24,16 @@ const AdminHome = () => {
         }
     })
 
+      const {data: totalDonation =[], } = useQuery({
+        queryKey: ["payment"], 
+        queryFn: async () => {
+            const res = await axiosSecure.get('/payment')
+            return res.data 
+        }
+    })
+
+    console.log(totalDonation);
+
 
 
   return (
@@ -71,7 +81,7 @@ const AdminHome = () => {
             </div>
             <div className="flex flex-col justify-start">
               <p className="my-4 text-4xl font-bold text-left text-gray-700 ">
-                34,500
+                {totalDonation.price}
                 <span className="text-sm">$</span>
               </p>
             </div>

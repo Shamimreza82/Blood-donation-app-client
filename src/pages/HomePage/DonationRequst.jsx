@@ -1,96 +1,78 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserInfo from "../../Hooks/useUserInfo";
 import toast from "react-hot-toast";
+import { IoArrowBackOutline  } from "react-icons/io5";
 
 const DonationRequst = () => {
-    const navigate = useNavigate();
-    const [singleUser] = useUserInfo()
-    const {user} = useAuth();
-    const [district, setdistrict] = useState([]);
-    const [upValue, SetDUpValue] = useState([])
-    const [upValue2, SetDUpValue2] = useState('')
-    const [bloodGroup, setBloodgroup] = useState("");
-    const [distValue, SetDistValue] = useState('')
- 
+  const navigate = useNavigate();
+  const [singleUser] = useUserInfo();
+  const [district, setdistrict] = useState([]);
+  const [upValue, SetDUpValue] = useState([]);
+  const [upValue2, SetDUpValue2] = useState("");
+  const [bloodGroup, setBloodgroup] = useState("");
+  const [distValue, SetDistValue] = useState("");
 
-    const axiosPublic = useAxiosPublic()
-  
+  const axiosPublic = useAxiosPublic();
 
-    useEffect(() => {
-           axiosPublic('/dist')
-          .then(res => {
-          const names = res.data.map((name) => name.name);
-          setdistrict(names )
-        });
-    }, [axiosPublic]);
-  
-    useEffect(() => {
-           axiosPublic('/upazi')
-          .then(res => {
-          const names = res.data.map((name) => name.name);
-          SetDUpValue(names )
-        });
-    }, [axiosPublic]);
+  useEffect(() => {
+    axiosPublic("/dist").then((res) => {
+      const names = res.data.map((name) => name.name);
+      setdistrict(names);
+    });
+  }, [axiosPublic]);
 
-
-
-
-
-
+  useEffect(() => {
+    axiosPublic("/upazi").then((res) => {
+      const names = res.data.map((name) => name.name);
+      SetDUpValue(names);
+    });
+  }, [axiosPublic]);
 
   const handelDonationRequst = async (e) => {
     e.preventDefault();
 
-    const form = e.target
-    
-    const recipientName = form.recipientName.value
-    const hospitalName = form.hospitalName.value
-    const date = form.date.value
-    const time = form.time.value
-    const address = form.address.value
-    const text= form.text.value
+    const form = e.target;
+
+    const recipientName = form.recipientName.value;
+    const hospitalName = form.hospitalName.value;
+    const date = form.date.value;
+    const time = form.time.value;
+    const address = form.address.value;
+    const text = form.text.value;
 
     // console.log(recipientName, hospitalName, date, time, address, text);
     const donationRequst = {
-        requsterName: singleUser?.Name, 
-        requesterEmail: singleUser?.email, 
-        requesterImage: singleUser?.image, 
-        recipientName, 
-        hospitalName, 
-        date, 
-        time, 
-        district: distValue,
-        upazila: upValue2,
-        address, 
-        text, 
-        status: 'pending'
-    }
+      requsterName: singleUser?.Name,
+      requesterEmail: singleUser?.email,
+      requesterImage: singleUser?.image,
+      recipientName,
+      hospitalName,
+      date,
+      time,
+      district: distValue,
+      upazila: upValue2,
+      address,
+      text,
+      status: "pending",
+    };
 
     console.log(donationRequst);
-        const res = await axiosPublic.post('/donationRequest', donationRequst )
-        console.log(res.data)
-        if(res.data.acknowledged){
-          toast.success("Requst Successfull");
-              navigate('/')
-        }
-     
-
-
+    const res = await axiosPublic.post("/donationRequest", donationRequst);
+    console.log(res.data);
+    if (res.data.acknowledged) {
+      toast.success("Requst Successfull");
+      navigate("/");
+    }
   };
-
-
-
-
-
-
-
 
   return (
     <div className="h-screen bg-slate-100">
-      <section className="bg-white ">
+      
+      <section className="bg-white relative ">
+      <div className="text-right absolute right-10 top-6 bg-slate-100 py-1 px-3 rounded-full underline hover:-translate-x-3 duration-300 text-red-600"><Link to='/' className="text-right "><IoArrowBackOutline  className="inline-flex -mt-0 mr-1"></IoArrowBackOutline >Back Home</Link> </div>
         <div className="flex justify-center min-h-screen">
           <div
             className="hidden bg-cover lg:block lg:w-2/5"
@@ -111,10 +93,8 @@ const DonationRequst = () => {
                 and begin setting up your profile.
               </p>
 
-              <form
-                onSubmit={handelDonationRequst}
-              >
-                <div className="grid grid-cols-1 gap-2 mt-2 md:grid-cols-2">
+              <form onSubmit={handelDonationRequst}>
+                <div className="grid grid-cols-1 gap-6 mt-2 md:grid-cols-2">
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
                       Requester Name
@@ -124,7 +104,7 @@ const DonationRequst = () => {
                       readOnly
                       type="text"
                       placeholder="John"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
@@ -137,99 +117,120 @@ const DonationRequst = () => {
                       defaultValue={singleUser?.email}
                       readOnly
                       placeholder="Snow"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      Recipient Name
+                      Recipient Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       name="recipientName"
+                      required
                       placeholder="Recipient Name"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      Hospital Name
+                      Hospital Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       name="hospitalName"
+                      required
                       placeholder="Hospital Name"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      Donation Date
+                      Donation Date <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="date"
+                      required
                       name="date"
                       placeholder="Date"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      Donation Time
+                      Donation Time<span className="text-red-500">*</span>
                     </label>
                     <input
                       type="time"
+                      required
                       name="time"
                       placeholder="Time"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      District
+                      District<span className="text-red-500">*</span>
                     </label>
-                    <select onChange={(e) => SetDistValue(e.target.value)} className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-700 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" >
-                        {
-                        district.map(items => <option key={items}  value={items}>{items}</option> )
-                        }
+                    <select
+                      onChange={(e) => SetDistValue(e.target.value)}
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    >
+                      {district.map((items) => (
+                        <option key={items} value={items}>
+                          {items}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
-                      Upazila
+                      Upazila<span className="text-red-500">*</span>
                     </label>
-                    <select onChange={(e) => SetDUpValue2(e.target.value)} className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-700 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" >
-                        {
-                        upValue?.map((items, idx) => <option key={idx} value={items}>{items}</option> )
-                      }
+                    <select
+                      onChange={(e) => SetDUpValue2(e.target.value)}
+                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    >
+                      {upValue?.map((items, idx) => (
+                        <option key={idx} value={items}>
+                          {items}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
                 <div>
-                    <label className="block mb-2 text-sm mt-3 text-gray-600 ">
-                      Full Address
-                    </label>
-                    <textarea
-                      type="text"
-                      name="address"
-                      placeholder="Address"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    />
-                  </div>
+                  <label className="block mb-2 text-sm mt-3 text-gray-600 ">
+                    Full Address<span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    type="text"
+                    required
+                    name="address"
+                    placeholder="Address"
+                    className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
                 <div>
-                    <label className="block mb-2 mt-3 text-sm text-gray-600 ">
-                      Requester Text
-                    </label>
-                    <textarea
-                      type="text"
-                      name="text"
-                      placeholder="Text"
-                      className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                    />
-                  </div>
-                <button className="flex items-center justify-between  px-6 mt-4 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                  <label className="block mb-2 mt-3 text-sm text-gray-600 ">
+                    Requester Text<span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    type="text"
+                    name="text"
+                    required
+                    placeholder="Text"
+                    className="block w-full px-5 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400 dark:text-gray-900 dark:border-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                {singleUser.status === "block" ? (
+                  <button disabled className="btn mt-4">
+                    Request
+                  </button>
+                ) : (
+                  <button className="flex items-center justify-between  px-6 mt-4 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-600 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                     <span>Request</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -244,6 +245,25 @@ const DonationRequst = () => {
                       />
                     </svg>
                   </button>
+                )}
+                {singleUser.status === "block" && (
+                  <div role="alert" className="alert alert-error mt-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="stroke-current shrink-0 h-6 w-6 animate-bounce"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>You are not authorized to request by admin</span>
+                  </div>
+                )}
               </form>
             </div>
           </div>

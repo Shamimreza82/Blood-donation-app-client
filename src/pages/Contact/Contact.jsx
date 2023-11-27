@@ -3,7 +3,7 @@ import React from "react";
 const Contact = () => {
   return (
     <div>
-      <section className="bg-white ">
+      <section className="bg-white md:mb-10">
         <div className="container max-w-7xl px-6 py-12 mx-auto">
           <div>
             <p className="font-medium text-blue-500 dark:text-red-400 ">
@@ -23,14 +23,14 @@ const Contact = () => {
           <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
               <div>
-                <span className="inline-block p-3 text-red-500 rounded-full bg-red-100/80  ">
+                <span className="inline-block p-3 text-red-500 rounded-full bg-red-100/80">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    className="w-5 h-5 animate-bounce"
+                    className="w-5 h-5 "
                   >
                     <path
                       stroke-linecap="round"
@@ -191,7 +191,7 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
-                    className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600  dark:text-gray-300  focus:border-blue-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    className="block w-full  px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-36 dark:placeholder-gray-600  dark:text-gray-300  focus:border-blue-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Message"
                   ></textarea>
                 </div>
