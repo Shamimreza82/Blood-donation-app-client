@@ -8,10 +8,10 @@ import toast from "react-hot-toast";
 
 const AllUsers = () => {
   const axiosPublic = useAxiosPublic();
-  const [roles, setRoles] = useState('');
+  const [roles, setRoles] = useState('donor');
   const {user} = useAuth()
     
-
+  console.log(roles);
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["allusers"],
     queryFn: async () => {
@@ -24,10 +24,18 @@ const AllUsers = () => {
 
 
   const handelRoles = async (id) => {
+    if(roles === ""){
+      return  toast.error('Please Select Role')
+    }
     const res = await axiosPublic.put(`/userRole/${id}`, {role: roles} )
     console.log(res.data);
-    toast.success('Role change Successful')
-        refetch()  
+    if(res.data.modifiedCount > 0){
+      toast.success('Role change successful')
+      refetch()  
+    }else {
+      toast.error('Please Select Role')
+    }
+    
  
   }
 

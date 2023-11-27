@@ -5,7 +5,6 @@ import MainLayout from "../Layout/MainLayout";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import MyDonationRequest from "../pages/Dashboard/DashboardPages/Donor/MyDonationRequest";
-import CreateDonation from "../pages/Dashboard/DashboardPages/Donor/CreateDonationUpdate";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import UpdateProfile from "../pages/Dashboard/Profile/UpdateProfile";
 import DonationRequst from "../pages/HomePage/DonationRequst";
@@ -23,104 +22,122 @@ import DetailsDonationRequest from "../pages/Dashboard/DashboardPages/Donor/deta
 import Fundings from "../pages/Fundings/Fundings";
 
 const router = createBrowserRouter([
-    {
-        path: '/', 
-        element: <MainLayout></MainLayout>, 
-        errorElement: <ErrorPage></ErrorPage>  
-    }, 
-    {
-        path: '/blog',
-        element: <Blog></Blog>
-    },
-    {
-        path: '/donorSearch',
-        element: <DonorSearch></DonorSearch>
-    },
-    {
-        path: '/fundings',
-        element: <PrivateRoute><Fundings></Fundings></PrivateRoute>
-    },
-    {
-        path: '/login', 
-        element: <Login></Login>
-    },
-    {
-        path: '/register', 
-        element: <Register></Register>
-    }, 
-    {
-        path: '/donationRequest', 
-        element: <PrivateRoute>
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+  },
+  {
+    path: "/blog",
+    element: <Blog></Blog>,
+  },
+  {
+    path: "/donorSearch",
+    element: <DonorSearch></DonorSearch>,
+  },
+  {
+    path: "/fundings",
+    element: (
+      <PrivateRoute>
+        <Fundings></Fundings>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/register",
+    element: <Register></Register>,
+  },
+  {
+    path: "/donationRequest",
+    element: (
+      <PrivateRoute>
+        <DonationRequst></DonationRequst>
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <DashboardHome></DashboardHome>,
+      },
+
+      // donor Route
+      {
+        path: "/dashboard/myDonationRequest",
+        element: <MyDonationRequest></MyDonationRequest>,
+      },
+      {
+        path: "/dashboard/createDonation",
+        element: (
+          <PrivateRoute>
             <DonationRequst></DonationRequst>
-        </PrivateRoute>
-    }, 
-    {
-        path: '/dashboard', 
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>, 
-        children: [
-            {
-                index: true, 
-                element: <DashboardHome></DashboardHome>
-            },
-           
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile></Profile>,
+      },
+      {
+        path: "/dashboard/updateUser/:id",
+        element: <UpdateProfile></UpdateProfile>,
+      },
 
-            // donor Route
-            {
-                path: '/dashboard/myDonationRequest', 
-                element: <MyDonationRequest></MyDonationRequest>
-            }, 
-            {
-                path: '/dashboard/createDonation', 
-                element: <PrivateRoute>
-                    <DonationRequst></DonationRequst>
-                </PrivateRoute>
-            }, 
-            {
-                path: '/dashboard/profile', 
-                element: <Profile></Profile>
-            },
-            {
-                path: '/dashboard/updateUser/:id', 
-                element: <UpdateProfile></UpdateProfile>
-            }, 
+      /////////////////////Dashboard Routes/////////////////////
 
-            /////////////////////Dashboard Routes/////////////////////
+      {
+        path: "/dashboard/allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "/dashboard/contentManagement",
+        element: <ContantManagement></ContantManagement>,
+      },
+      {
+        path: "/dashboard/donationRequest",
+        element: <DonationRequst></DonationRequst>
+      },
+      {
+        path: "/dashboard/createDonationUpdate/:id",
+        element: <CreateDonationUpdate></CreateDonationUpdate>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/createDonationUpdate/${params.id}`),
+      },
+      {
+        path: "/dashboard/allBloodDonationRequest",
+        element: <AllBloodDonationRequest></AllBloodDonationRequest>,
+      },
+      {
+        path: "/dashboard/contentManagement/add-Blog",
+        element: (
+          <PrivateRoute>
+            <AddBlog></AddBlog>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/contentManagement/detailsDonationRequest/:id",
+        element: (
+          <PrivateRoute>
+            <DetailsDonationRequest></DetailsDonationRequest>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/detailsDonationRequest/${params.id}`),
+      },
+    ],
+  },
+]);
 
-            {
-                path: '/dashboard/allUsers', 
-                element: <AllUsers></AllUsers>
-            }, 
-            {
-                path: '/dashboard/contentManagement', 
-                element: <ContantManagement></ContantManagement>
-            }, 
-            {
-                path: '/dashboard/donationRequest', 
-                element: <DonationRequestAdmin></DonationRequestAdmin>
-            }, 
-            {
-                path: '/dashboard/createDonationUpdate/:id', 
-                element: <CreateDonationUpdate></CreateDonationUpdate>, 
-                loader: ({params}) => fetch(`http://localhost:5000/createDonationUpdate/${params.id}`)
-            }, 
-            {
-                path: '/dashboard/allBloodDonationRequest', 
-                element: <AllBloodDonationRequest></AllBloodDonationRequest>
-            },
-            {
-                path: '/dashboard/contentManagement/add-Blog', 
-                element: <PrivateRoute>
-                                <AddBlog></AddBlog>
-                         </PrivateRoute>
-            }, 
-            {
-                path: '/dashboard/contentManagement/detailsDonationRequest/:id', 
-                element: <PrivateRoute><DetailsDonationRequest></DetailsDonationRequest></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/detailsDonationRequest/${params.id}`)
-            }
-
-        ]
-    }
-])
-
-export default router; 
+export default router;

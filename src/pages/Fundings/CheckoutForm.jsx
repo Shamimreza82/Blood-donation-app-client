@@ -13,11 +13,14 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [amount, setAmount] = useState("");
   const [success, setSuccess] = useState('')
+  const [error, setError] = useState('')
 
   const price = parseInt(amount);
   console.log(price);
 
   console.log(clientSecret);
+
+  
 
   useEffect(() => {
     if (price > 0) {
@@ -31,7 +34,7 @@ const CheckoutForm = () => {
 
   const handelSunmit = async (e) => {
     e.preventDefault();
-
+    // setIsloding(true)
     if (!stripe || !elements) {
       return;
     }
@@ -63,7 +66,9 @@ const CheckoutForm = () => {
         },
       });
     if (confirmError) {
-      console.log('allllll',confirmError);
+      console.log('allllll',confirmError.message);
+
+        return setError(confirmError.message)
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
@@ -79,12 +84,15 @@ const CheckoutForm = () => {
         const res = await axiosSecure.post("/payment", payment);
         console.log(res.data);
         setSuccess(`Your Payment ID: ${paymentIntent.id}`)
+        setError('')
       } else {
         setSuccess('')
+        
       }
      
     }
   };
+
 
   return (
     <div className="" >
@@ -133,6 +141,7 @@ const CheckoutForm = () => {
               Pay
             </button>
             <p className="text-green-500 font-bold">{success}</p>
+            <p className="text-red-600 font-bold">{error}</p>
             <div className="mt-8 text-sm text-red-600 bg-red-100/60 rounded-md py-1 pl-1">
               NOTE: For Testing only{" "}
             </div>

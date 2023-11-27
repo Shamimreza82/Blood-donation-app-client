@@ -99,7 +99,7 @@ const Sidebar = () => {
               />}
               {singelUser?.role === 'donor' && <MenuItem
                 icon={BsGraphUp}
-                label='Create Donation'
+                label='Create Donation Request'
                 address='/dashboard/createDonation'
               />}
               {singelUser?.role === 'volunteer' && <MenuItem
@@ -161,10 +161,10 @@ const Sidebar = () => {
             
             <button className='mx-4 font-medium'>Home Page</button>
           </Link>
-            <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
+            <button onClick={() => logeOutUser(navigate('/'))} className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
            <GrLogout className='w-5 h-5' />
             
-            <span onClick={() => logeOutUser(navigate('/'))} className='mx-4 font-medium'>Logout</span>
+            <span  className='mx-4 font-medium'>Logout</span>
           </button>
         </div>
       </div>

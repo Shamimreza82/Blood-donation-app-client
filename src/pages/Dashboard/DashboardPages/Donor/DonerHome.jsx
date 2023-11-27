@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import useUserInfo from "../../../../Hooks/useUserInfo";
 import useAuth from "../../../../Hooks/useAuth";
@@ -12,7 +12,9 @@ import { BiDonateHeart } from "react-icons/bi";
 const DonerHome = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
- const [singleUser] = useUserInfo()
+  const [singleUser] = useUserInfo();
+  const [status , setStatus] = useState()
+  console.log(status);
 
   const { data: myDonation = [], refetch } = useQuery({
     queryKey: ["donation", user?.email],
@@ -25,10 +27,13 @@ const DonerHome = () => {
 
   if (myDonation == false) {
     return (
-      <div >
-        <div className="min-h-screen flex justify-center items-center" >
-          <div role="alert" className="alert alert-info bg-red-100/60 border-none ">
-          <BiDonateHeart className="text-7xl text-red-600 "></BiDonateHeart>
+      <div>
+        <div className="min-h-screen flex justify-center items-center">
+          <div
+            role="alert"
+            className="alert alert-info bg-red-100/60 border-none "
+          >
+            <BiDonateHeart className="text-7xl text-red-600 "></BiDonateHeart>
             <span>
               You have not requested for donation !! Please make a Donation
               Request{" "}
@@ -63,19 +68,45 @@ const DonerHome = () => {
     });
   };
 
+
+
+
+
   return (
     <div>
       <div>
-        <h1 className="text-2xl text-center">Welcome <span className="text-red-600 font-bold">{singleUser.Name}</span></h1>
-        <h1 className="text-center py-3 text-xl font-bold">Your Resent Donation Request</h1>
+        <h1 className="text-2xl text-center">
+          Welcome{" "}
+          <span className="text-red-600 font-bold">{singleUser.Name}</span>
+        </h1>
+        <h1 className="text-center py-3 text-xl font-bold">
+          Your Resent Donation Request
+        </h1>
         <hr />
       </div>
-      <section className="container px-4 mx-auto mt-5">
-        <div className="flex items-center gap-x-3">
+      <section className="container px-4 mx-auto">
+        <div className="">
           <h2 className="text-lg font-medium text-gray-800 dark:text-white">
             Team members
           </h2>
-
+          
+        </div>
+        <div className="flex items-center justify-between">
+          <form action="">
+            <h1 >Filter with Donation Status</h1>
+            <select
+              id="animals"
+              onChange={(e) => setStatus(e.target.value)}
+              className="block mt-2 px-3 py-2 text-sm bg-white border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+              name="animals"
+            >
+              <option value="">Select an option</option>
+              <option value="pending">Pending</option>
+              <option value="inprogress">Inprogress</option>
+              <option value="done">Done</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </form>
           <span className="px-3 py-1 text-xs text-blue-800 bg-blue-100 rounded-full dark: dark:text-blue-800">
             Total Donation: {myDonation.length}
           </span>
