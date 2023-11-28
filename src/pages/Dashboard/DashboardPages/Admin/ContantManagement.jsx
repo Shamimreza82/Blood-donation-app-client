@@ -79,14 +79,14 @@ const handelUnPublish = async (id) => {
         <div className="flex justify-end mt-4">
             <Link to='/dashboard/contentManagement/add-Blog' className=" bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>
         </div>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-2 gap-5 md:px-10">
           {
             blogs.map(blog => 
             <div key={blog._id} className="bg-slate-50 mt-3  m-auto p-3 rounded-md">
               
               <h1 className="text-2xl mb-4 font-bold text-gray-800 ">{blog.title}</h1>
               <div className="mb-4">
-                <img className="rounded-md" src={blog.image} alt="" />
+                <img className="rounded-md w-full" src={blog.image} alt="" />
               </div>
               <div
                dangerouslySetInnerHTML={{__html: blog.content}}

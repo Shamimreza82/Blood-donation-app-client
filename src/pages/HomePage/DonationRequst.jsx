@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import useUserInfo from "../../Hooks/useUserInfo";
 import toast from "react-hot-toast";
-import { IoArrowBackOutline  } from "react-icons/io5";
+import { IoArrowBackOutline } from "react-icons/io5";
 import { Helmet } from "react-helmet";
 
 const DonationRequst = () => {
@@ -71,12 +71,17 @@ const DonationRequst = () => {
 
   return (
     <div className="h-screen bg-slate-100">
-            <Helmet>
-                <title>Life Lines | Donation Request</title>
-            </Helmet>
+      <Helmet>
+        <title>Life Lines | Donation Request</title>
+      </Helmet>
       <section className="bg-white relative ">
-      <div className="text-right absolute right-10 top-6 bg-slate-100 py-1 px-3 rounded-full underline hover:-translate-x-3 duration-300 text-red-600"><Link to='/' className="text-right "><IoArrowBackOutline  className="inline-flex -mt-0 mr-1"></IoArrowBackOutline >Back Home</Link> </div>
-        <div className="flex justify-center min-h-screen">
+        <div className="text-right absolute mt-2 md:right-10 md:top-6 right-0 bg-slate-100 py-1 px-3 rounded-full underline hover:-translate-x-3 duration-300 text-red-600">
+          <Link to="/" className="text-right ">
+            <IoArrowBackOutline className="inline-flex -mt-0 mr-1"></IoArrowBackOutline>
+            Back Home
+          </Link>{" "}
+        </div>
+        <div className="flex justify-center md:min-h-screen">
           <div
             className="hidden bg-cover lg:block lg:w-2/5"
             style={{
@@ -85,19 +90,19 @@ const DonationRequst = () => {
             }}
           ></div>
 
-          <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+          <div className="flex items-center w-full max-w-3xl md:p-8 mt-8 mx-auto lg:px-12 lg:w-3/5 px-3 ">
             <div className="w-full">
-              <h1 className="text-3xl font-bold tracking-wider text-red-600 capitalize ">
+              <h1 className="md:text-3xl text-lg font-bold tracking-wider text-red-600 capitalize ">
                 Donation Request
               </h1>
 
-              <p className="mt-4 text-gray-500 dark:text-gray-400">
+              <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm">
                 Let’s get you all set up so you can verify your personal account
                 and begin setting up your profile.
               </p>
 
               <form onSubmit={handelDonationRequst}>
-                <div className="grid grid-cols-1 gap-6 mt-2 md:grid-cols-2">
+                <div className="grid grid-cols-1 md:gap-6 gap-2 mt-2 md:grid-cols-2">
                   <div>
                     <label className="block mb-2 text-sm text-gray-600 ">
                       Requester Name

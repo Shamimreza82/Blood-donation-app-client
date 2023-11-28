@@ -29,14 +29,14 @@ const Blog = () => {
     <div>
       <Navber2></Navber2>
       <Helmet>
-                <title>Life Lines | Blog</title>
-            </Helmet>
+        <title>Life Lines | Blog</title>
+      </Helmet>
       <div
-        className="h-80"
+        className="md:h-80 h-40"
         style={{ backgroundImage: `url('${logo1}')`, backgroundSize: "cover" }}
       >
         <div className="max-w-7xl m-auto">
-          <div className="max-w-7xl  m-auto pt-40 pl-6">
+          <div className="max-w-7xl  m-auto md:pt-40 pt-5 pl-6">
             <h1 className="text-3xl font-bold text-slate-800">Blogs</h1>
             <p>Saving Lives Drop by Drop: The Blood Donation Chronicles.</p>
           </div>
@@ -48,19 +48,20 @@ const Blog = () => {
           </div>
         </div>
         <div>
-         
-            <div className=" tooltip flex justify-end max-w-7xl m-auto mt-28 " data-tip="hello">
-              <Link
-                to="/dashboard/contentManagement/add-Blog"
-                className="btn bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 "
-              >
-                Post Blog
-              </Link>
-            </div>
-   
+          <div
+            className=" tooltip flex justify-end max-w-7xl m-auto md:mt-28 mt-8 "
+            data-tip="hello"
+          >
+            <Link
+              to="/dashboard/contentManagement/add-Blog"
+              className="md:btn md:btn-sm bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 "
+            >
+              Post Blog
+            </Link>
+          </div>
 
           <section className="text-gray-600 body-font overflow-hidden max-w-7xl m-auto">
-            <div className="container px-5 py-8 mx-auto">
+            <div className="container px-5 md:py-8 mx-auto">
               <div className="flex flex-wrap -m-12">
                 {publishBlogs.map((blog) => (
                   <div
@@ -148,7 +149,6 @@ const Blog = () => {
           </section>
         </div>
       </div>
-
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Navber2 = () => {
 
   return (
     <div>
-      <nav className="md:py-2 md:fixed  z-50 w-full ">
+      <nav className="md:py-2 md:fixed bg-red-100 md:bg-transparent  z-50 w-full ">
         <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
           <img src={logo} className="md:h-16 h-12" alt="Flowbite Logo" />
 

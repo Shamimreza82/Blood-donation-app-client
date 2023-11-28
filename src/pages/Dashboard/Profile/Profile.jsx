@@ -6,11 +6,11 @@ const Profile = () => {
   const [singleUser] = useUserInfo();
 
   return (
-    <div className="flex justify-center items-center h-screen">
-            <Helmet>
-                <title>Life Lines | Dashboard | Profile</title>
-            </Helmet>
-      <div className="bg-white shadow-lg rounded-2xl md:w-3/5">
+    <div className="flex justify-center items-center md:h-screen">
+      <Helmet>
+        <title>Life Lines | Dashboard | Profile</title>
+      </Helmet>
+      <div className="bg-white shadow-lg rounded-2xl md:w-3/5 w-full">
         <img
           alt="profile"
           src="https://images.unsplash.com/photo-1524721696987-b9527df9e512?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -25,7 +25,6 @@ const Profile = () => {
             />
           </a>
 
-         
           <p className="mt-2 text-xl font-medium text-gray-800 ">
             {singleUser?.role}
           </p>
@@ -63,7 +62,6 @@ const Profile = () => {
                   {singleUser?.upazilia}
                 </span>
               </p>
-              
             </div>
             <div className="flex justify-center my-3">
               <Link
