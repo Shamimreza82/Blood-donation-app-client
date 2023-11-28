@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic";
 import useAuth from "../../../../Hooks/useAuth";
 import useUserInfo from "../../../../Hooks/useUserInfo";
+import { Helmet } from "react-helmet";
 
 const CreateDonationUpdate= () => {
     const singeluserData = useLoaderData()
@@ -91,6 +92,9 @@ const CreateDonationUpdate= () => {
 
   return (
     <div className="h-screen bg-slate-100">
+      <Helmet>
+                <title>Life Lines | Dashboard | Update Donation Request</title>
+            </Helmet>
       <section className="bg-white ">
         <div className="flex justify-center min-h-screen">
           <div

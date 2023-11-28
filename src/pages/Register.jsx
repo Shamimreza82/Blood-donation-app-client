@@ -19,6 +19,8 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { imageUplode } from "../api/ultis";
 import logo from '../assets/images/logo.png'
+import { IoArrowBackOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet";
 
 function Copyright(props) {
   return (
@@ -85,8 +87,6 @@ export default function Register() {
     const uploded = await imageUplode(image)
     console.log(uploded);
 
-  
-
 
     const user = {
       Name: data.get("lastName"),
@@ -99,13 +99,6 @@ export default function Register() {
       role: 'donor'
     };
 
-    console.log(user);
-    
-
-
-
-
-    console.log(user);
     const result = await createUser(user.email, password);
     console.log(result.user);
     if(result.user){
@@ -117,18 +110,17 @@ export default function Register() {
       }
     }
 
-
-
- 
-
-
   };
 
 
 
   return (
     <ThemeProvider theme={defaultTheme}>
+      <Link to='/' ><IoArrowBackOutline  className="inline-flex -mt-0 mr-1"></IoArrowBackOutline >Back Home</Link> 
       <Container component="main" maxWidth="xs">
+          <Helmet>
+                <title>Life Lines | Registration</title>
+            </Helmet>
         <CssBaseline />
         <Box
           sx={{

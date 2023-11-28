@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { MdPublishedWithChanges, MdOutlineUnpublished  } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const ContantManagement = () => {
   const axiosPublic = useAxiosPublic()
@@ -71,6 +72,9 @@ const handelUnPublish = async (id) => {
 
   return (
     <div>
+            <Helmet>
+                <title>Life Lines | Dashboard | Content Management</title>
+            </Helmet>
       <h1 className="text-center py-8 text-3xl font-bold border-b">Blogs </h1>
         <div className="flex justify-end mt-4">
             <Link to='/dashboard/contentManagement/add-Blog' className=" bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>

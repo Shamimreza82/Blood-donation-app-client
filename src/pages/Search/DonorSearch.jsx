@@ -7,6 +7,7 @@ import { GiJoin } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
 import { FaArrowLeft } from "react-icons/fa";
 import Loeading from "../../component/Loeading/Loeading";
+import { Helmet } from "react-helmet";
 
 const DonorSearch = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const DonorSearch = () => {
   return (
     <div>
       <Navber2></Navber2>
+          <Helmet>
+                <title>Life Lines | Search Donor </title>
+            </Helmet>
 
       <div className="max-w-7xl m-auto pt-40 ">
         <div className="mt-3 ml-6 text-red-600 underline font-bold hover:scale-105 hover:duration-300 ">

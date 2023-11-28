@@ -6,6 +6,7 @@ import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import useUserInfo from "../../../../Hooks/useUserInfo";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const AllBloodDonationRequest = () => {
   const [singelUser] = useUserInfo();
@@ -54,6 +55,9 @@ const AllBloodDonationRequest = () => {
 
   return (
     <div>
+       <Helmet>
+                <title>Life Lines | Dashboard | All Donation Request</title>
+            </Helmet>
       <h1 className="text-center py-8 text-3xl font-bold border-b">
         All Blood Donation request
       </h1>

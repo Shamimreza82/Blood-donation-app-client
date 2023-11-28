@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import useUserInfo from "../../../Hooks/useUserInfo";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
   const [singleUser] = useUserInfo();
 
   return (
     <div className="flex justify-center items-center h-screen">
+            <Helmet>
+                <title>Life Lines | Dashboard | Profile</title>
+            </Helmet>
       <div className="bg-white shadow-lg rounded-2xl md:w-3/5">
         <img
           alt="profile"

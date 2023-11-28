@@ -6,10 +6,14 @@ import Testimonial from '../pages/Testimonial/Testimonial';
 import ComingEvents from '../pages/ComingEvents';
 import OurHeros from '../pages/OurHeros';
 import Qna from '../pages/Qna';
+import { Helmet } from 'react-helmet';
 
 const MainLayout = () => {
     return (
         <div>
+            <Helmet>
+                <title>Life Lines | Home</title>
+            </Helmet>
             {/* <Navber></Navber> */}
             <Navber2></Navber2>
             <Banner></Banner>

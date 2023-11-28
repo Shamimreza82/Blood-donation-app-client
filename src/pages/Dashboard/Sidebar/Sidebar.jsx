@@ -61,7 +61,7 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4   rounded-lg justify-center items-center  mx-auto'>
+            <div className='w-full md:flex px-4   rounded-lg justify-center items-center  mx-auto'>
             <div className="flex flex-col items-center -mx-2">
             <img className="object-cover w-24 h-24 mx-2 rounded-full" src={singelUser?.image} alt="avatar"/>
             <h4 className="mx-2 mt-2 font-medium text-gray-800 ">{singelUser?.Name}</h4>

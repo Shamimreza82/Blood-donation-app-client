@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useUserInfo from "../../Hooks/useUserInfo";
 import toast from "react-hot-toast";
 import { IoArrowBackOutline  } from "react-icons/io5";
+import { Helmet } from "react-helmet";
 
 const DonationRequst = () => {
   const navigate = useNavigate();
@@ -70,7 +71,9 @@ const DonationRequst = () => {
 
   return (
     <div className="h-screen bg-slate-100">
-      
+            <Helmet>
+                <title>Life Lines | Donation Request</title>
+            </Helmet>
       <section className="bg-white relative ">
       <div className="text-right absolute right-10 top-6 bg-slate-100 py-1 px-3 rounded-full underline hover:-translate-x-3 duration-300 text-red-600"><Link to='/' className="text-right "><IoArrowBackOutline  className="inline-flex -mt-0 mr-1"></IoArrowBackOutline >Back Home</Link> </div>
         <div className="flex justify-center min-h-screen">

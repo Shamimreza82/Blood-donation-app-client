@@ -7,6 +7,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Footer from "../Footer/Footer";
+import { Helmet } from "react-helmet";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
@@ -27,6 +28,9 @@ const Blog = () => {
   return (
     <div>
       <Navber2></Navber2>
+      <Helmet>
+                <title>Life Lines | Blog</title>
+            </Helmet>
       <div
         className="h-80"
         style={{ backgroundImage: `url('${logo1}')`, backgroundSize: "cover" }}

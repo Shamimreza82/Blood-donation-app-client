@@ -19,6 +19,7 @@ import useAuth from '../Hooks/useAuth';
 // import SocialLogin from '../component/SocialLogin';
 // import toast from 'react-hot-toast';
 import logo from '../assets/images/logo.png'
+import { Helmet } from 'react-helmet';
 
 
 
@@ -64,6 +65,9 @@ export default function Login() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+            <Helmet>
+                <title>Life Lines | Login</title>
+            </Helmet>
         <CssBaseline />
         <Box
           sx={{

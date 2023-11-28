@@ -4,6 +4,7 @@ import { MdBlock } from "react-icons/md";
 import { useEffect, useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const AllUsers = () => {
@@ -66,6 +67,9 @@ const AllUsers = () => {
 
   return (
     <div>
+           <Helmet>
+                <title>Life Lines | Dashboard | All Users</title>
+            </Helmet>
       <h1 className="text-center py-8 text-3xl font-bold border-b">All Users</h1>
       <section className="container px-4 mx-auto mt-3">
         <div className="flex items-center gap-x-3">
