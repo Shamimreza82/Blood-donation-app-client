@@ -136,13 +136,37 @@ const DonorSearch = () => {
       </div>
       <div className="md:w-[70%] m-auto mt-7 overflow-x-auto">
         <div className="overflow-x-auto">
+        <div className="flex justify-center items-center md:my-8">
+              {donor == false && (
+                <div className="" >
+                  {" "}
+                  <div role="alert" className="alert alert-warning">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="stroke-current shrink-0 h-6 w-6 animate-ping"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                      />
+                    </svg>
+                    <span>
+                      No data was found with the information you searched for.
+                      Please select another option to search
+                    </span>
+                  </div>
+                </div>
+              )}
+              </div>
           <table className="table">
             {/* head */}
             <thead>
               <tr>
-                <th>
-                 Sl
-                </th>
+                <th>Sl</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Location</th>
@@ -151,43 +175,39 @@ const DonorSearch = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {
-                donor?.map((search, idx) => 
-                  <tr key={search._id}>
-                <th>
-                  {idx + 1}
-                </th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={search.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+             
+
+              {donor?.map((search, idx) => (
+                <tr key={search._id}>
+                  <th>{idx + 1}</th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src={search.image}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">{search.Name}</div>
                       </div>
                     </div>
-                    <div>
-                      <div className="font-bold">{search.Name}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {search.email}
-                </td>
-                <td>
-                District: {search.district} <br />
-                Upazilia: {search.upazilia} 
-                </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">{search.bloodGroup}</button>
-                </th>
-              </tr>
-                  )
-              }
-             
+                  </td>
+                  <td>{search.email}</td>
+                  <td>
+                    District: {search.district} <br />
+                    Upazilia: {search.upazilia}
+                  </td>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">
+                      {search.bloodGroup}
+                    </button>
+                  </th>
+                </tr>
+              ))}
             </tbody>
-
           </table>
         </div>
       </div>

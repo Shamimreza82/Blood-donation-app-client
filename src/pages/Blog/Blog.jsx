@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet";
+import ShareButtons from "../../component/ShareButtons";
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
@@ -139,6 +140,7 @@ const Blog = () => {
                           <span className="title-font font-medium text-gray-900">
                             {blog.name}
                           </span>
+                          {/* <ShareButtons></ShareButtons> */}
                         </span>
                       </a>
                     </div>

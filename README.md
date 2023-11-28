@@ -4,6 +4,9 @@
 # Live Link: https://blood-donation-28936.web.app 
 
 
+Admin: admin@gmail.com
+pass:  112233
+
 The Blood Donation Application is a platform designed to facilitate seamless blood donation activities, connecting donors with individuals in need of blood. This project is built using the MERN stack (MongoDB, Express.js, React, Node.js).
 
 ## Purpose and Scope
