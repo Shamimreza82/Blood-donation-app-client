@@ -116,7 +116,7 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Link to='/' ><IoArrowBackOutline  className="inline-flex -mt-0 mr-1"></IoArrowBackOutline >Back Home</Link> 
+      <Link to='/' ><IoArrowBackOutline  className="inline-flex -mt-0 mr-1 cursor-pointer"></IoArrowBackOutline >Back Home</Link> 
       <Container component="main" maxWidth="xs">
           <Helmet>
                 <title>Life Lines | Registration</title>

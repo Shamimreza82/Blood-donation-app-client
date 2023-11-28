@@ -52,13 +52,13 @@ const Profile = () => {
             <div className="md:flex gap-10 md:ml-12 mt-5">
               <p className="flex flex-col">
                 District:
-                <span className="font-bold text-gray-800 ">
+                <span className="font-bold text-gray-800">
                   {singleUser?.district}
                 </span>
               </p>
               <p className="flex flex-col">
                 Upazila:
-                <span className="font-bold text-gray-800 ">
+                <span className="font-bold text-gray-800">
                   {singleUser?.upazilia}
                 </span>
               </p>

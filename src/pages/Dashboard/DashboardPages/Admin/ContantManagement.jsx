@@ -75,14 +75,14 @@ const handelUnPublish = async (id) => {
             <Helmet>
                 <title>Life Lines | Dashboard | Content Management</title>
             </Helmet>
-      <h1 className="text-center py-8 text-3xl font-bold border-b">Blogs </h1>
+      <h1 className="text-center md:py-8 text-3xl pb-3 font-bold border-b">Blogs </h1>
         <div className="flex justify-end mt-4">
             <Link to='/dashboard/contentManagement/add-Blog' className=" bg-red-600 px-3 py-2 rounded-md text-yellow-100 hover:bg-red-800 ">Add Blog</Link>
         </div>
-        <div className="grid md:grid-cols-2 gap-5 md:px-10">
+        <div className="grid md:grid-cols-2 md:gap-5 gap-3 md:px-10">
           {
             blogs.map(blog => 
-            <div key={blog._id} className="bg-slate-50 mt-3  m-auto p-3 rounded-md">
+            <div key={blog._id} className="bg-slate-50 mt-3  m-auto  rounded-md md:p-5">
               
               <h1 className="text-2xl mb-4 font-bold text-gray-800 ">{blog.title}</h1>
               <div className="mb-4">
@@ -94,14 +94,14 @@ const handelUnPublish = async (id) => {
 
               </div>
               { singleUser?.role === 'admin' && 
-                <div className="space-x-4 mt-4">
+                <div className="space-x-2 mt-4">
                   <button onClick={() =>handelDeleteBloge(blog._id) }  className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">delete <MdDeleteForever className="inline-flex -mt-1 "></MdDeleteForever></button>
 
                   <button className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">Edit <FaEdit className="inline-flex -mt-1 ml-1"></FaEdit></button>
                   { blog.status === 'publish' ?  
                   <button onClick={()=>handelUnPublish(blog._id)} className=" bg-red-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-red-800 ">Unpublish <MdOutlineUnpublished className="inline-flex -mt-1 "></MdOutlineUnpublished></button> 
                   :
-                  <><button onClick={()=>handelPublish(blog._id)} className=" bg-green-600 px-3 py-1 rounded-md text-yellow-100 hover:bg-green-800 ">Publish <MdPublishedWithChanges className="inline-flex -mt-1 "></MdPublishedWithChanges></button></>}
+                  <><button onClick={()=>handelPublish(blog._id)} className=" bg-green-600 px-3 py-1  rounded-md text-yellow-100 hover:bg-green-800 ">Publish <MdPublishedWithChanges className="inline-flex -mt-1 "></MdPublishedWithChanges></button></>}
               </div>}
             </div>)
           }
