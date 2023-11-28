@@ -4,11 +4,14 @@ import useUserInfo from "../../../../Hooks/useUserInfo";
 import { Link } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const MyDonation = () => {
   const axiosSecure = useAxiosSecure();
   const [singleUser] = useUserInfo();
   console.log(singleUser?.email);
+
+
 
   const { data: myDonation = [], refetch } = useQuery({
     queryKey: ["donation", singleUser?.email],
@@ -19,13 +22,12 @@ const MyDonation = () => {
   });
   console.log(myDonation);
 
-  const handelCanceled = () => {
-    // const status = "block"
-    // console.log(id, status );
-    // const res = await axiosPublic.put(`/userBlock/${id}`, {status: status} )
-    // console.log(res.data);
-    // toast.success('User Blocked')
-    // refetch()
+  const handelCanceled = async (id) => {
+    const status = "pending"
+    const res = await axiosSecure.put(`/donationRequest/${id}`, {status: status} )
+    console.log(res.data);
+    toast.success('Canceled Success')
+    refetch()
   };
 
   return (
@@ -124,18 +126,7 @@ const MyDonation = () => {
                     >
                       Donation Status
                     </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
-                    >
-                      Done
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-4 py-3.5 text-sm font-bold text-left rtl:text-right text-gray-500 dark:text-gray-600"
-                    >
-                      Canceled
-                    </th>
+                    
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-300 ">
@@ -177,7 +168,17 @@ const MyDonation = () => {
                           </h2>
                         </div>
                       </td>
-                      <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                      {donation.status === 'pending' && <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-500 hover:bg-red-600">
+                            <Link
+                              to={`/dashboard/contentManagement/detailsDonationRequest/${donation._id}`}
+                              className="text-sm font-normal text-white"
+                            >
+                              View
+                            </Link>
+                          </div>
+                        </td>}
+                      { donation.status === 'inprogress' && <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <button>
                           <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-green-500 hover:bg-green-700">
                             <h2 className="text-sm font-normal text-white">
@@ -185,8 +186,8 @@ const MyDonation = () => {
                             </h2>
                           </div>
                         </button>
-                      </td>
-                      <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                      </td>}
+                      { donation.status === 'inprogress' && <td className=" py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div
                           onClick={() => handelCanceled(donation._id)}
                           className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-red-500 hover:bg-red-700"
@@ -195,7 +196,7 @@ const MyDonation = () => {
                             Canceled
                           </h2>
                         </div>
-                      </td>
+                      </td>}
                     </tr>
                   ))}
                 </tbody>

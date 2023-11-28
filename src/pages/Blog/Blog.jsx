@@ -26,7 +26,7 @@ const Blog = () => {
   console.log(publishBlogs);
 
   return (
-    <div>
+    <div >
       <Navber2></Navber2>
       <Helmet>
         <title>Life Lines | Blog</title>
@@ -146,7 +146,9 @@ const Blog = () => {
                 ))}
               </div>
             </div>
+           
           </section>
+          <Footer></Footer> 
         </div>
       </div>
     </div>
