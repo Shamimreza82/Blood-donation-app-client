@@ -74,7 +74,7 @@ const DonationRequst = () => {
       <Helmet>
         <title>Life Lines | Donation Request</title>
       </Helmet>
-      <section className="bg-white relative ">
+      <section className="bg-white relative mt-6 md:mt-0 ">
         <div className="text-right absolute mt-2 md:right-10 md:top-6 right-0 bg-slate-100 py-1 px-3 rounded-full underline hover:-translate-x-3 duration-300 text-red-600">
           <Link to="/" className="text-right ">
             <IoArrowBackOutline className="inline-flex -mt-0 mr-1"></IoArrowBackOutline>

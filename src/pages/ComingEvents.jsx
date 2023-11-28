@@ -2,7 +2,7 @@ import bg from '../assets/images/22.jpg'
 
 const ComingEvents = () => {
   return (
-    <div className="bg-red-100/40 mt-20 py-12 ">
+    <div className="bg-red-100/40 md:mt-20 md:py-12 ">
       <div className="relative px-4 py-6 overflow-hidden sm:px-6 sm:py-8 lg:p-12 xl:p-16 max-w-7xl m-auto ">
         <h2 className="text-2xl font-semibold font-display text-black  sm:text-3xl">
           We&#x27;ve got more coming...

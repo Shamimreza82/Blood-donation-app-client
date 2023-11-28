@@ -10,10 +10,10 @@ const Qna = () => {
         <h2 className="max-w-7xl m-auto pt-7 text-2xl pl-3">Answers to Your Blood Donation Queries</h2>
       <div className="space-y-3  flex  items-center max-w-7xl m-auto">
         
-        <div className="space-y-3 py-20 md:w-[70%] px-3">
+        <div className="space-y-3 md:py-20 py-4 md:w-[70%] px-3">
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" checked="checked" />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium">
             Who can donate blood?
             </div>
             <div className="collapse-content">
@@ -22,7 +22,7 @@ const Qna = () => {
           </div>
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium">
             How often can I donate blood?
             </div>
             <div className="collapse-content">
@@ -31,7 +31,7 @@ const Qna = () => {
           </div>
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium">
             Is it safe to donate blood?
             </div>
             <div className="collapse-content">
@@ -40,7 +40,7 @@ const Qna = () => {
           </div>
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" />
-            <div className="collapse-title text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium">
             What happens during a blood donation?
             </div>
             <div className="collapse-content">
