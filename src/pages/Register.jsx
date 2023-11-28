@@ -85,7 +85,7 @@ export default function Register() {
     const uploded = await imageUplode(image)
     console.log(uploded);
 
-
+  
 
 
     const user = {
