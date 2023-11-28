@@ -88,13 +88,18 @@ const Sidebar = () => {
               />
               {singelUser?.role === 'volunteer' && <MenuItem
                 icon={BsGraphUp}
-                label='My Donation'
-                address='/dashboard/myDonationRequest'
+                label='My Donation '
+                address='/dashboard/myDonation'
               />}
 
               {singelUser?.role === 'donor' && <MenuItem
                 icon={BsGraphUp}
                 label='My Donation'
+                address='/dashboard/myDonation'
+              />}
+              {singelUser?.role === 'donor' && <MenuItem
+                icon={BsGraphUp}
+                label='My Donation Request'
                 address='/dashboard/myDonationRequest'
               />}
               {singelUser?.role === 'donor' && <MenuItem

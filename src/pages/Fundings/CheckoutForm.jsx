@@ -5,7 +5,7 @@ import useUserInfo from "../../Hooks/useUserInfo";
 import toast from "react-hot-toast";
 import bg from "../../assets/images/1 (1).jpg";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({refetch}) => {
   const [singleUser] = useUserInfo();
   const stripe = useStripe();
   const elements = useElements();
@@ -85,6 +85,7 @@ const CheckoutForm = () => {
         console.log(res.data);
         setSuccess(`Your Payment ID: ${paymentIntent.id}`)
         setError('')
+        refetch()
       } else {
         setSuccess('')
         

@@ -13,6 +13,7 @@ const DetailsDonationRequest = () => {
     const status = "inprogress";
     const res = await axiosPublic.put(`/donationRequest/${id}`, {
       status: status,
+      myDonation: singleUser?.email
     });
     console.log(res.data);
     // refetch()

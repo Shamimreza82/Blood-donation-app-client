@@ -20,6 +20,8 @@ import DonorSearch from "../pages/Search/DonorSearch";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import DetailsDonationRequest from "../pages/Dashboard/DashboardPages/Donor/detailsDonationRequest";
 import Fundings from "../pages/Fundings/Fundings";
+import BloodDonationRequest from "../pages/BloodDonationRequest/BloodDonationRequest";
+import MyDonation from "../pages/Dashboard/DashboardPages/Donor/MyDonation";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +61,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
   },
+  {
+    path: '/bloodDonationRequest', 
+    element: <BloodDonationRequest></BloodDonationRequest>
+  }, 
   {
     path: "/dashboard",
     element: (
@@ -117,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/allBloodDonationRequest",
         element: <AllBloodDonationRequest></AllBloodDonationRequest>,
+      },
+      {
+        path: "/dashboard/myDonation",
+        element: <MyDonation></MyDonation>,
       },
       {
         path: "/dashboard/contentManagement/add-Blog",
