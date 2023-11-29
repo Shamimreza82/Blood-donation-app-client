@@ -62,9 +62,9 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/bloodDonationRequest', 
-    element: <BloodDonationRequest></BloodDonationRequest>
-  }, 
+    path: "/bloodDonationRequest",
+    element: <BloodDonationRequest></BloodDonationRequest>,
+  },
   {
     path: "/dashboard",
     element: (

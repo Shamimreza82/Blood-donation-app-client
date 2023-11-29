@@ -13,13 +13,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import SocialLogin from '../component/SocialLogin';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../Hooks/useAuth';
 // import { useNavigate } from 'react-router-dom';
 // import SocialLogin from '../component/SocialLogin';
 // import toast from 'react-hot-toast';
 import logo from '../assets/images/logo.png'
 import { Helmet } from 'react-helmet';
+import { useState } from 'react';
 
 
 
@@ -43,22 +44,45 @@ const defaultTheme = createTheme();
 export default function Login() {
   const {loginUser} = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  // const [error, setError] = useState("");
 
+  console.log(location);
 
   const handleSubmit =  async(event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const LoginUser = {
+    try {
+      const data = new FormData(event.currentTarget);
+      const LoginUser = {
       email: data.get('email'),
       password: data.get('password'),
     }
 
+    const password = data.get('password')
+    console.log(password);
+
+    // if (password.length < 6) {
+    //   return setError("Your password must be at least 6 characters");
+    // } else if (!/^(?=.*[A-Z]).*$/.test(password)) {
+    //   return setError("Password must have at least one Uppercase Character.");
+    // } else if (
+    //   !/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/.test(password)
+    // ) {
+    //   return setError("Password must contain at least one Special Symbol.");
+    // }
+
+
+
     const result = await loginUser(LoginUser.email, LoginUser.password)
     if(result?.user?.email){
       toast.success('Login SuccessFul')
-      navigate('/')
+      navigate(location?.state ?  location?.state : "/" )
     }
 
+    } catch (error) {
+      console.log(error);
+      toast.error('please input valid error')
+    }
 
   };
 
@@ -108,6 +132,7 @@ export default function Login() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {/* <p className='text-red-500'>{error}</p> */}
             <Button
               type="submit"
               fullWidth

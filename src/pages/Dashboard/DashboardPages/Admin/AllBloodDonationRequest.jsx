@@ -10,14 +10,18 @@ import { Helmet } from "react-helmet";
 
 const AllBloodDonationRequest = () => {
   const [singelUser] = useUserInfo();
-  const [itemsPerpage, setItemsperpage] = useState()
+  // const [itemsPerpage, setItemsperpage] = useState()
+  const [status, seetStatus] = useState('')
 
   const axiosSecure = useAxiosSecure();
-  const itemsPerPage = 10; 
-  const numberofPages = Math.ceil(itemsPerPage)
+  // const itemsPerPage = 10; 
+//   const numberofPages = Math.ceil(itemsPerPage)
 
- const pages =  [...Array(5).keys()]
- console.log(pages);
+//  const pages =  [...Array(5).keys()]
+//  console.log(pages);
+
+
+console.log(status);
 
   const { data: allDonation = [], refetch } = useQuery({
     queryKey: ["allDonation"],
@@ -53,6 +57,8 @@ const AllBloodDonationRequest = () => {
     });
   };
 
+
+
   return (
     <div>
        <Helmet>
@@ -72,7 +78,7 @@ const AllBloodDonationRequest = () => {
             <h1>Filter with Donation Status</h1>
             <select
               id="animals"
-              // onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => seetStatus(e.target.value)}
               className="block mt-2 px-3 py-2 text-sm bg-white border border-gray-300 rounded-md shadow-sm  focus:outline-none focus:ring-primary-500 focus:border-primary-500"
               name="animals"
             >

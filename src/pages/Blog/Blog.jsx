@@ -8,7 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import Footer from "../Footer/Footer";
 import { Helmet } from "react-helmet";
-import ShareButtons from "../../component/ShareButtons";
+
 
 const Blog = () => {
   const axiosPublic = useAxiosPublic();
@@ -21,21 +21,18 @@ const Blog = () => {
       return await res.data;
     },
   });
-  console.log(blogs);
-
   const publishBlogs = blogs.filter((blog) => blog.status === "publish");
-  console.log(publishBlogs);
 
   return (
     <div >
-      <Navber2></Navber2>
       <Helmet>
         <title>Life Lines | Blog</title>
       </Helmet>
       <div
-        className="md:h-80 h-40"
+        className="md:h-80 h-56"
         style={{ backgroundImage: `url('${logo1}')`, backgroundSize: "cover" }}
       >
+        <Navber2></Navber2>
         <div className="max-w-7xl m-auto">
           <div className="max-w-7xl  m-auto md:pt-40 pt-5 pl-6">
             <h1 className="text-3xl font-bold text-slate-800">Blogs</h1>

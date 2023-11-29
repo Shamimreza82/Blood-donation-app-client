@@ -3,6 +3,8 @@ import useUserInfo from "../../../Hooks/useUserInfo";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import { imageUplode } from "../../../api/ultis";
+import useAllUser from "../../../Hooks/useAllUser";
 
 const UpdateProfile = () => {
   const [singleUser] = useUserInfo();
@@ -13,9 +15,11 @@ const UpdateProfile = () => {
   const [bloodGroup, setBloodgroup] = useState("");
   const [distValue, SetDistValue] = useState("");
   const navigate = useNavigate();
-  //   const [image, setimage] = useState('')
-
+  const [image, setImage] = useState()
   const axiosPublic = useAxiosPublic();
+
+  
+
 
   useEffect(() => {
     axiosPublic("/dist").then((res) => {
@@ -31,10 +35,19 @@ const UpdateProfile = () => {
     });
   }, [axiosPublic]);
 
+
+  
+
+
   const handelUpdateProfile = async () => {
+
+    const uploded = await imageUplode(image)
+    console.log(uploded);
+
+
     const updateProfile = {
       Name: Name,
-      // image: uploded?.data?.display_url,
+      image: uploded?.data?.display_url,
       bloodGroup: bloodGroup,
       district: distValue,
       upazilia: upValue2,
@@ -48,34 +61,26 @@ const UpdateProfile = () => {
     if (res.data.modifiedCount > 0) {
       toast.success("Profile Update Successful");
       navigate("/dashboard/profile");
+      
     }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-white shadow-lg rounded-2xl w-3/5">
+    <div className="flex justify-center items-center md:h-screen">
+      <div className="bg-white shadow-lg rounded-2xl md:w-3/5 px-3  w-full">
         <img
           alt="profile"
           src="https://images.unsplash.com/photo-1524721696987-b9527df9e512?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           className="w-full mb-4 rounded-t-lg h-36"
         />
         <div className="flex flex-col items-center justify-center p-4 -mt-16">
-          <a href="#" className="relative block">
-            <img
-              alt="profile"
-              src={singleUser?.image}
-              className="mx-auto object-cover rounded-full h-24 w-24  border-2 border-white "
-            />
-          </a>
-
-          <p className="p-2 px-4 text-xs text-white bg-pink-500 rounded-full">
-            {/* {role && role.toUpperCase()} */}
-          </p>
+        
+            <input onChange={(e) => setImage(e.target.files[0]) } type="file" name="image" id="" className="py-2 ml-44 mt-8" />
           <p className="mt-2 text-xl font-medium text-gray-800 ">
             {singleUser?.role}
           </p>
           <div className="w-full p-2 mt-4 rounded-lg">
-            <div className="flex gap-6 justify-around ">
+            <div className="md:flex md:gap-6 justify-around ">
               <div className=" flex flex-col">
                 <label>Name</label>
                 <input
@@ -90,7 +95,7 @@ const UpdateProfile = () => {
               </div>
               <p className="flex flex-col">
                 Email
-                <span className="font-bold text-black ">
+                <span className="font-bold text-black">
                   {singleUser?.email}
                 </span>
               </p>
@@ -116,7 +121,7 @@ const UpdateProfile = () => {
                 </span>
               </p>
             </div>
-            <div className="flex gap-10 mt-5 ml-6">
+            <div className="md:flex gap-10 mt-5 md:ml-6">
               <p className="flex flex-col">
               
                 <label> District:</label>

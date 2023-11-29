@@ -6,13 +6,18 @@ import { Helmet } from "react-helmet";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useUserInfo from "../../Hooks/useUserInfo";
+import { useRef } from "react";
+import { jsPDF } from "jspdf"; 
+import html2canvas from "html2canvas";
+import generatePDF, { usePDF } from "react-to-pdf";
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_API);
 
 const Fundings = () => {
   const axiosSecure = useAxiosSecure();
   const [singleUser] = useUserInfo();
-  console.log(singleUser?.email);
+
+const targetRef = useRef()
 
   const { data: myPayment, refetch } = useQuery({
     queryKey: ["payment", singleUser?.email],
@@ -21,6 +26,27 @@ const Fundings = () => {
       return res.data;
     },
   });
+
+  // const downloadPDF = () => {
+  //   const input = document.getElementById('pdfContent'); // Replace 'pdfContent' with the ID of the element you want to convert to PDF
+  //   html2canvas(input)
+  //     .then((canvas) => {
+  //       const imgData = canvas.toDataURL('image/png');
+  //       const pdf = new jsPDF();
+  //       const imgWidth = 210; // PDF page width (in mm)
+  //       const imgHeight = (canvas.height * imgWidth) / canvas.width; // Adjusting height to maintain aspect ratio
+  //       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+  //       pdf.save('download.pdf');
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error generating PDF:', error);
+  //     });
+  // };
+
+  // const { toPDF, targetRef } = usePDF({filename: 'page.pdf'})
+  
+
+
 
   console.log(myPayment);
 
@@ -39,11 +65,11 @@ const Fundings = () => {
             </div>
           </Elements>
         </div>
-        <div className="max-w-5xl m-auto mt-6">
+        <div  className="max-w-5xl m-auto mt-6" ref={targetRef} >
           My Donation History
           <div className="overflow-x-auto">
             <table className="table table-xs">
-              <thead>
+              <thead >
                 <tr>
                   <th></th>
                   <th>Name</th>
@@ -63,13 +89,15 @@ const Fundings = () => {
                     <td>{payment.payment_id}</td>
                     <td className="text-right">{payment.price} $</td>
                     <td>{payment.date.slice(0, 9)}</td>
-                    <td className="text-green-500">Paid</td>
+                    <td className="">Paid</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
+        
+  
       </div>
     </div>
   );

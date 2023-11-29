@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import useAuth from '../../Hooks/useAuth';
 import toast from "react-hot-toast";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../Hooks/useAuth";
 import SocialLogin from "../component/SocialLogin";
@@ -53,6 +53,8 @@ export default function Register() {
   const [bloodGroup, setBloodgroup] = useState("");
   const [distValue, SetDistValue] = useState('')
   const [image, setimage] = useState('')
+  const location = useLocation()
+  console.log(location);
 
   console.log(image);
     const axiosPublic = useAxiosPublic()
@@ -81,8 +83,19 @@ export default function Register() {
     const data = new FormData(event.currentTarget);
     const image = data.get('file')
     const password = data.get('password')
+    const confirmPassword = data.get('confirmPassword')
 
 
+
+    if(password !== confirmPassword){
+      return toast.error("Your password doesn't match")
+    } 
+
+    console.log(image);
+
+    if(image.name === ''){
+      return toast.error('Please lodeImage')
+    }
 
     const uploded = await imageUplode(image)
     console.log(uploded);
@@ -99,15 +112,20 @@ export default function Register() {
       role: 'donor'
     };
 
-    const result = await createUser(user.email, password);
+    try {
+      const result = await createUser(user.email, password);
     console.log(result.user);
     if(result.user){
       const res = await axiosPublic.post('/users', user )
       console.log(res.data)
       if(res.data.insertedId){
         toast.success("Register Successful");
-           navigate('/')
+           navigate(location?.state ?  location?.state : "/" )
       }
+    }
+    } catch (error) {
+      console.log(error.message);
+      toast.error('Please provide valid email address')
     }
 
   };
@@ -116,7 +134,7 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Link to='/' ><IoArrowBackOutline  className="inline-flex -mt-0 mr-1 cursor-pointer"></IoArrowBackOutline >Back Home</Link> 
+      {/* <Link to='/' ><IoArrowBackOutline  className="inline-flex -mt-0 mr-1 cursor-pointer"></IoArrowBackOutline >Back Home</Link>  */}
       <Container component="main" maxWidth="xs">
           <Helmet>
                 <title>Life Lines | Registration</title>
@@ -177,6 +195,17 @@ export default function Register() {
                   autoComplete="new-password"
                 />
               </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
              
               <Grid item xs={12} sm={6}>
                   <label></label>
@@ -224,6 +253,7 @@ export default function Register() {
                     </select>
               </Grid>
               <Grid item xs={12} sm={6}>
+                <label>Uplode Photo</label>
                 <input type="file" name="file" id="" className=" px-4 py-3 rounded-md w-full" />
               </Grid>
              

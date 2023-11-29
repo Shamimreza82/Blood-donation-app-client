@@ -8,7 +8,7 @@ const MyDonationRequest = () => {
             <Helmet>
                 <title>Life Lines | My Donation</title>
             </Helmet>
-            <DonerHome></DonerHome>
+            {/* <DonerHome></DonerHome> */}
         </div>
     );
 };

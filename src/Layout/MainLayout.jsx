@@ -15,7 +15,7 @@ const MainLayout = () => {
                 <title>Life Lines | Home</title>
             </Helmet>
             {/* <Navber></Navber> */}
-            <Navber2></Navber2>
+          
             <Banner></Banner>
             <OurHeros></OurHeros>
             <ComingEvents></ComingEvents>

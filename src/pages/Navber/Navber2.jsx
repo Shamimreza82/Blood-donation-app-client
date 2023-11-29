@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import useUserInfo from "../../Hooks/useUserInfo";
 import useAuth from "../../Hooks/useAuth";
 import { LuLogIn } from "react-icons/lu";
 
@@ -11,7 +10,7 @@ const Navber2 = () => {
 
   return (
     <div>
-      <nav className="md:py-2 md:fixed bg-red-100 md:bg-transparent  z-50 w-full ">
+      <nav className=" bg-red-100 md:bg-transparent  z-50 w-full ">
         <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
           <img src={logo} className="md:h-16 h-12" alt="Flowbite Logo" />
 
@@ -19,7 +18,8 @@ const Navber2 = () => {
             onClick={() => setIsOpen(!isOpen)}
             data-collapse-toggle="navbar-default"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-100 rounded-lg md:hidden hover:bg-gray-100  focus:ring-2 focus:ring-gray-100 dark:text-gray-400 dark:hover:bg-red-700 "
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-100 rounded-lg md:hidden 
+            bg-red-600  "
             aria-controls="navbar-default"
             aria-expanded="false"
           >
@@ -43,11 +43,11 @@ const Navber2 = () => {
           <div
             className={
               isOpen
-                ? "hidden  w-full md:block md:w-auto "
+                ? "hidden w-full md:block md:w-auto "
                 : "w-full z-40 md:block md:w-auto "
             }
           >
-            <ul className="font-medium flex flex-col gap-3 p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-slate-700 md:bg-transparent ">
+            <ul className="font-medium flex flex-col gap-3 md:gap-0 p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-slate-700 md:bg-transparent ">
               <li></li>
               <li>
                 <Link
