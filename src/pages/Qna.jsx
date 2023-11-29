@@ -13,7 +13,7 @@ const Qna = () => {
         <div className="space-y-3 md:py-20 py-4 md:w-[70%] px-3">
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" checked="checked" />
-            <div className="collapse-title md:text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium" data-aos="zoom-in">
             Who can donate blood?
             </div>
             <div className="collapse-content">
@@ -22,14 +22,14 @@ const Qna = () => {
           </div>
           <div className="collapse collapse-arrow bg-base-200 rounded-xl">
             <input type="radio" name="my-accordion-2" />
-            <div className="collapse-title md:text-xl font-medium">
+            <div className="collapse-title md:text-xl font-medium" data-aos="zoom-in">
             How often can I donate blood?
             </div>
             <div className="collapse-content">
               <p>Whole blood donors can typically donate every 56 days, while there might be different intervals for other donation types. Consult our team for personalized information.</p>
             </div>
           </div>
-          <div className="collapse collapse-arrow bg-base-200 rounded-xl">
+          <div className="collapse collapse-arrow bg-base-200 rounded-xl" data-aos="zoom-in">
             <input type="radio" name="my-accordion-2" />
             <div className="collapse-title md:text-xl font-medium">
             Is it safe to donate blood?
@@ -38,7 +38,7 @@ const Qna = () => {
               <p>Yes, donating blood is safe. We adhere to strict health and safety standards, ensuring a sterile environment and professional care during the donation process.</p>
             </div>
           </div>
-          <div className="collapse collapse-arrow bg-base-200 rounded-xl">
+          <div className="collapse collapse-arrow bg-base-200 rounded-xl" data-aos="zoom-in">
             <input type="radio" name="my-accordion-2" />
             <div className="collapse-title md:text-xl font-medium">
             What happens during a blood donation?

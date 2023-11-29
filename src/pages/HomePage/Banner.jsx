@@ -37,7 +37,7 @@ const Banner = () => {
               <Link
                 to="/register"
                 className="block hover:scale-95 duration-200 w-full rounded bg-red-600 px-10 py-2 text-base font-medium text-white shadow hover:bg-red-800 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
-              >
+                data-aos="zoom-out-down">
                 Join As a Donor{" "}
                 <GiJoin className="inline-flex ml-2 text-lg "></GiJoin>
               </Link>
@@ -46,7 +46,8 @@ const Banner = () => {
                 to="/donorSearch"
                 href="#"
                 className="block w-full hover:scale-95 duration-200 rounded bg-white px-12 py-3 text-sm font-bold text-red-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
-              >
+                data-aos="fade-up"
+                data-aos-anchor-placement="bottom-bottom">
                 <RiFindReplaceLine className="inline-flex -mt-1 mr-2 text-lg animate-ping"></RiFindReplaceLine>{" "}
                 Search Donor
               </Link>

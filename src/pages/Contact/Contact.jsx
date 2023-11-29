@@ -10,7 +10,13 @@ const Contact = () => {
               Contact us
             </p>
 
-            <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl ">
+            <h1
+              className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl "
+              data-aos="fade-left"
+              data-aos-anchor="#example-anchor"
+              data-aos-offset="500"
+              data-aos-duration="500"
+            >
               Chat to our friendly team
             </h1>
 
@@ -35,6 +41,7 @@ const Contact = () => {
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
+                      className=" animate-bounce"
                       d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
                     />
                   </svg>
@@ -80,9 +87,7 @@ const Contact = () => {
                 <p className="mt-2 text-sm text-gray-500 ">
                   Our friendly team is here to help.
                 </p>
-                <p className="mt-2 text-sm text-blue-500 ">
-                  Start new chat
-                </p>
+                <p className="mt-2 text-sm text-blue-500 ">Start new chat</p>
               </div>
 
               <div>
@@ -158,6 +163,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      required
                       placeholder="John "
                       className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400  dark:text-gray-300  focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -169,6 +175,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
+                      required
                       placeholder="Doe"
                       className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400  dark:text-gray-300  focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -181,6 +188,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="email"
+                    required
                     placeholder="johndoe@example.com"
                     className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-400  dark:text-gray-300  focus:border-red-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
@@ -191,12 +199,16 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
+                    required
                     className="block w-full  px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-36 dark:placeholder-gray-600  dark:text-gray-300  focus:border-blue-400 dark:focus:border-red-400 focus:ring-red-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     placeholder="Message"
                   ></textarea>
                 </div>
 
-                <button className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button
+                  className="w-full px-6 py-3 mt-4 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  data-aos="flip-up"
+                >
                   Send message
                 </button>
               </form>

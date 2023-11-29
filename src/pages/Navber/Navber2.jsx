@@ -43,24 +43,24 @@ const Navber2 = () => {
           <div
             className={
               isOpen
-                ? "hidden w-full md:block md:w-auto "
-                : "w-full md:block md:w-auto "
+                ? "hidden  w-full md:block md:w-auto "
+                : "w-full z-40 md:block md:w-auto "
             }
           >
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-red-500 md:bg-transparent  dark:border-gray-700">
+            <ul className="font-medium flex flex-col gap-3 p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-slate-700 md:bg-transparent ">
               <li></li>
               <li>
                 <Link
                   to="/donationRequest"
-                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
-                 Make Donation Request
+                  Make Donation Request
                 </Link>
               </li>
               <li>
                 <Link
                   to="/bloodDonationRequest"
-                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Blood Donation requests
                 </Link>
@@ -68,7 +68,7 @@ const Navber2 = () => {
               <li>
                 <Link
                   to="/fundings"
-                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Fundings
                 </Link>
@@ -76,7 +76,7 @@ const Navber2 = () => {
               <li>
                 <Link
                   to="/blog"
-                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Blog
                 </Link>
@@ -86,7 +86,7 @@ const Navber2 = () => {
                   <li>
                     <Link
                       to="/dashboard"
-                      className="block md:text-sm md:bg-green-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Dashboard
                     </Link>
@@ -97,7 +97,7 @@ const Navber2 = () => {
                   <li>
                     <Link
                       to="/register"
-                      className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block md:text-sm md:bg-red-600 hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Registration
                     </Link>
@@ -109,7 +109,7 @@ const Navber2 = () => {
                   <li>
                     <button
                       onClick={() => logeOutUser()}
-                      className="block md:text-sm md:bg-red-600 hover:scale-105 duration-200  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-blue-700 md:p-0 dark:text-white md:text-white md:dark:hover:text-red-600 md:py-1 md:px-2 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block md:text-sm md:bg-red-600 w-full hover:scale-105 duration-300  md:uppercase py-2 px-3 text-gray-900 rounded-full hover:bg-gray-100 md:hover:bg-transparent md:border md:hover:text-black md:p-0 dark:text-white md:text-white md:dark:hover:text-black-600 md:py-1 md:px-2 bg-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       LogOut
                     </button>
